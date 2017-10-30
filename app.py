@@ -1,12 +1,15 @@
-# -*- coding: utf-8 -*-
 """
 
 Copyright (c) 2017 Joshua McManus, Eric Liu
 This applications and its creators have no affiliation with Valve or Steam.
 
 """
+
+from res.globvars import APPLIST
+
 import json
 import requests
+import pandas as pd
 
 API_FILE = './api-key.txt'
 API_KEY_LENGTH = 32
@@ -43,6 +46,10 @@ def main():
 
     #FetchAppList();
     #FetchSupportedApiCalls(API_KEY)
+    
+    appids = pd.io.json.json_normalize(APPLIST['applist']['apps'])
+    print(appids)
+
 
 if __name__ == "__main__":
     main()
