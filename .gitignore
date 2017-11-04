@@ -1,4 +1,2 @@
-api-key.txt
-
 ## Python Specific files
-*/__pycache__/
+**/__pycache__/
