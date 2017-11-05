@@ -1,0 +1,89 @@
+X,Y,Name,description,timestamp,begin,end,altitudeMode,tessellate,extrude,visibility,drawOrder,icon
+-123.111738155627,49.2860754854493,WATERFRONT,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>WATERFRONT</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.119972336831,49.2858601496754,BURRARD,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>BURRARD</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.116404027665,49.2836376878638,GRANVILLE,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>GRANVILLE</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.109564795656,49.2794416930032,STADIUM - CHINATOWN,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>STADIUM - CHINATOWN</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.100606907519,49.2731779129851,MAIN ST. - SCIENCE WORLD,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>MAIN ST. - SCIENCE WORLD</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.069099402992,49.2618178476532,BROADWAY,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>BROADWAY</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.055871516595,49.2482722113354,NANAIMO,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>NANAIMO</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.045940674179,49.2442425934484,29TH AVENUE,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>29TH AVENUE</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.031806717203,49.2383938064,JOYCE - COLLINGWOOD,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>JOYCE - COLLINGWOOD</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.032823831819,49.2607647789351,RUPERT,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>RUPERT</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.045308458871,49.2588929116788,RENFREW,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>RENFREW</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.068453898483,49.2629362684988,COMMERCIAL DRIVE,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>COMMERCIAL DRIVE</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.078962252228,49.2657831997804,VCC - CLARK,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>VCC - CLARK</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.113339268651,49.2856657680643,WATERFRONT,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>WATERFRONT</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.119284088603,49.2817347083362,VANCOUVER\nCITY\nCENTRE,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>VANCOUVER\nCITY\nCENTRE</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.121890377366,49.2743622559558,YALETOWN-/nROUNDHOUSE,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>YALETOWN-/nROUNDHOUSE</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.115196678961,49.2663402332777,OLYMPIC\nVILLAGE,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>OLYMPIC\nVILLAGE</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.114782181714,49.2627734692085,BROADWAY-\nCITY HALL,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>BROADWAY-\nCITY HALL</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.115336104396,49.2491228793651,KING EDWARD,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>KING EDWARD</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.116040675754,49.2334668118113,OAKRIDGE-\n41st. AVE.,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>OAKRIDGE-\n41st. AVE.</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.116324861119,49.2263869203022,LANGARA-\n49th AVE.,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>LANGARA-\n49th AVE.</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.117070775897,49.2095478744217,MARINE DRIVE,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>STATION</th>
+<td>MARINE DRIVE</td>
+</tr></table></center>",,,,,-1,0,-1,,

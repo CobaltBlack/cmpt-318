@@ -1,0 +1,438 @@
+X,Y,Name,description,timestamp,begin,end,altitudeMode,tessellate,extrude,visibility,drawOrder,icon
+-123.105860462078,49.2623383061239,Tenth Avenue Church,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Tenth Avenue Church</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-876-2181</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.097065334772,49.2809665379675,First United Church,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>First United Church</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-681-8365</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>yes</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>yes</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.127792927078,49.2795671693397,Dusk to Dawn-Directions Youth Centre,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Dusk to Dawn-Directions Youth Centre</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Youth (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-633-1472</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.070551901448,49.2693356609832,Vineyard Church,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Vineyard Church</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-255-4463</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.126146126461,49.2816379423176,First Baptist Church,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>First Baptist Church</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-683-8441</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.089140653353,49.2832570142586,Triage,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Triage</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-254-3700</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>no</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.090986046798,49.2818717041335,Union Gospel Mission,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Union Gospel Mission</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Men</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-253-3323</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.101429426307,49.2821349512488,The Haven,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>The Haven</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Men</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-646-6800</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>no</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.101220422812,49.2821315364482,Anchor of Hope,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Anchor of Hope</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-646-6899</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.100913161934,49.2820397545483,The Beacon,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>The Beacon</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Men</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-646-6846</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>no</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.114913417258,49.2777650064068,Catholic Charities Men's Hostel,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Catholic Charities Men's Hostel</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Men</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-443-3292</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>no</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.126364795368,49.2817829665326,First Baptist Church,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>First Baptist Church</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-683-8441</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.105208959767,49.2829089394758,New Fountain,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>New Fountain</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-331-1246</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>yes</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>yes</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.101115057949,49.2820439257224,Anchor of Hope,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Anchor of Hope</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-646-6899</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.126704362585,49.2751513632601,Welcome House for Immigrants,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Welcome House for Immigrants</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Women/Families</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-684-7498</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>no</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.096207657871,49.2837440886413,Lookout Downtown,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Lookout Downtown</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-681-9126</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>no</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>yes</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.112939685345,49.2824583823588,Belkin House,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Belkin House</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-681-3405</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>no</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.067356357987,49.2697474520736,Grandview Calvary Baptist Church,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Grandview Calvary Baptist Church</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-255-1411</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.099346861579,49.2715743534663,Aboriginal Shelter,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Aboriginal Shelter</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-347-0299</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>yes</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>yes</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.126322529911,49.2754042223039,Covenant House,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Covenant House</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Youth (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-685-7474</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.101324923635,49.2821327941377,Anchor of Hope,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Anchor of Hope</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-646-6899</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>yes</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.11236726194,49.2668908859729,Yukon Shelter,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Yukon Shelter</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-264-1680</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>no</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>yes</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,
+-123.107672478832,49.2818050804002,Crosswalk,"<center><table><tr><th colspan='2' align='center'><em>Attributes</em></th></tr><tr bgcolor=""#E3E3F3"">
+<th>FACILITY</th>
+<td>Crosswalk</td>
+</tr><tr bgcolor="""">
+<th>CATEGORY</th>
+<td>Adults (all genders)</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PHONE</th>
+<td>604-669-4349</td>
+</tr><tr bgcolor="""">
+<th>MEALS</th>
+<td>no</td>
+</tr><tr bgcolor=""#E3E3F3"">
+<th>PETS</th>
+<td>no</td>
+</tr><tr bgcolor="""">
+<th>CARTS</th>
+<td>no</td>
+</tr></table></center>",,,,,-1,0,-1,,

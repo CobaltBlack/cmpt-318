@@ -1,0 +1,155 @@
+MAPID,YEAR_CREATED,NAME,STREET_NUMBER,STREET_DIRECTION,STREET_NAME,STREET_TYPE,MERGED_ADDRESS,LATITUDE,LONGITUDE,NUMBER_OF_PLOTS,NUMBER_OF_FOOD_TREES,NOTES,FOOD_TREE_VARIETIES,OTHER_FOOD_ASSETS,JURISDICTION,STEWARD_OR_MANAGING_ORGANIZATION,PUBLIC_E_MAIL,WEBSITE
+FA129,1990,SPEC Vancouver Compost Demonstration Garden,2150,,Maple,St,"2150  Maple St, Vancouver BC",49.2666383,-123.1503918,0,,,,,City,SPEC,,
+FA093,1996,Maple Community Garden,1900,W,6th,Av,"1900 W 6th Av, Vancouver BC",49.2663131,-123.1480450,44,,,,,City,,info@maplecommunitygarden.ca,http://maplecommunitygarden.ca/
+FA113,2006,Pine St. Community Garden,1605,W,6th,Av,"1605 W 6th Av, Vancouver BC",49.2664210,-123.1413634,40,,,,,City,Pine Community Garden Association,pinestreetcommunitygardens@gmail.com,http://pinestreetgardens.org/
+FA127,2006,SPEC Cambie Communal Garden,2615,,Cambie ,St,"2615  Cambie  St, Vancouver BC",49.2615932,-123.1155183,17,,,,,City,SPEC,cambiesqvol@gmail.com,
+FA037,2007,Clark & Broadway Community Garden (formerly La Cose,1290,E,Broadway,,"1290 E Broadway , Vancouver BC",49.2620840,-123.0778410,56,1,,Plum,,City,REACH Community HealthCentre,,http://reachcentre.bc.ca/multicultural-family-centre/mfc-p
+FA077,2007,Jewish Family Services (JFSA),7249,,Cypress,St,"7249  Cypress St, Vancouver BC",49.2200920,-123.1504440,46,,,,,City,TheWorld in a Garden,info@theworldinagarden.com ,
+FA112,2007,Pine  St. Community Orchard,1708,W,6th,Av,"1708 W 6th Av, Vancouver BC",49.2662399,-123.1435022,47,,,,,City,Pine Community Garden Association,pinestreetcommunitygardens@gmail.com,http://pinestreetgardens.org/
+FA020,2009,Cedar Cottage Garden - Part 2,2019,,Stainsbury ,Av,"2019  Stainsbury  Av, Vancouver BC",49.2512645,-123.0644448,46,,,,,City,Cedar Cottage Garden Society ,ccgmembershipteam@gmail.com,https://sites.google.com/site/cedarcottagegarden/
+FA026,2009,Chester's Field Garden,5333,,Chester ,St,"5333  Chester  St, Vancouver BC",49.2366480,-123.0896066,10,3,,anjou dwarf pear; conference dwarf pear,,City,Friends of Chester's Field,chestersfield@gmail.com ,https://www.facebook.com/chestersfieldgarden?fref=ts
+FA028,2009,Chimo Terrace Youth Garden,2050,,Wall,St,"2050  Wall St, Vancouver BC",49.2854905,-123.0622030,5,,,,,City,Grandview Woodlands Food Connection,gwfcnetwork@gmail.com,http://gwfoodconnection.wordpress.com/
+FA035,2009,City Hall Lawn Garden,453,W,12th,Av,"453 W 12th Av, Vancouver BC",49.2613159,-123.1139357,36,6,,Apple,,City,Evergreen,vancouvercityhallgarden@gmail.com,http://www.evergreen.ca
+FA043,2009,CROWSpoint Community Garden,2299,E,24th,Av,"2299 E 24th Av, Vancouver BC",49.2488724,-123.0579937,30,,,,,City,EYA,crows.point@gmail.com,http://www.crowspoint.org/
+FA027,2010,Cheyenne Community Garden,2755,,Cheyenne,Av,"2755  Cheyenne Av, Vancouver BC",49.2414955,-123.0480587,33,7,inc by 3 plots in 2016,"Plums, heritage apples",,City,Renfrew Collingwood Food Security Institute,foodsecurity@cnh.bc.ca,http://rcfsi.blogspot.ca
+FA078,2010,John McBride Community Garden,1850,,Spyglass,Place,"1850  Spyglass Place, Vancouver BC",49.2696835,-123.1152216,46,,,,,City,Creek Community Gardeners (under  False Creek South Neig'd  Assoc.),mcbridegarden@gmail.com,
+FA080,2010,Kerrisdale Community Garden,7500,,Angus,Drive,"7500  Angus Drive, Vancouver BC",49.2177463,-123.1482727,21,4,,"anjou dwarf pear, compact stella, shamrock, persimmon",,City,Kerrisdale Community Garden Committee (under Kerrisdale Community Centre Society),kerrisdalecommunitygarden@gmail.com,https://sites.google.com/site/kerrisdalecommunitygarden/
+FA088,2010,Ladybug Garden,1688,E,8th,Av,"1688 E 8th Av, Vancouver BC",49.2629678,-123.0703978,40,3,,Plums,,City,PosAbilities,canyoudigit@posabilities.ca,http://www.posabilities.ca/
+FA142,2010,UP! Elgin community garden,5332,,Windsor,St,"5332  Windsor St, Vancouver BC",49.2365575,-123.0843880,28,,,,,City,PosAbilities,canyoudigit@posAbilities.ca,http://elgincommunitygarden.wordpress.com/
+FA108,2011,Norquay Community Learning Orchard,2732,,Horley,St,"2732  Horley St, Vancouver BC",49.2403942,-123.0491218,0,11,,"Heritage apples, pears, Asian pear, cherry, plums, fig",,City,Renfrew Collingwood Food Security Institute,foodsecurity@cnh.bc.ca,
+FA132,2011,Still Creek,4410,,Kaslo,St,"4410  Kaslo St, Vancouver BC",49.2449656,-123.0467647,93,8,,"italian plum (2) hosiu (2) dwarf apple (2) stella cherry, lapin cherry",,City,PosAbilities,stillcreekcommunitygarden@gmail.com,http://stillcreekcommunitygarden.wordpress.com/
+FA141,2011,Tupper Neighbourhood Greenway,400,E,23rd,Av,"400 E 23rd Av, Vancouver BC",49.2501660,-123.0939470,0,6,,"apple trees, berry bushes and fruit vines",,City,Tupper Greenway Urban Orchard Project,,
+FA146,2011,Village on False Creek,151,W,1st ,Av,"151 W 1st  Av, Vancouver BC",49.2706432,-123.1086189,42,,,,,City,Village on False Creek Community Gardens Society,villagecommunitygardens@gmail.com,http://villagecommunitygardens.com/
+FA040,2012,Copley Community Orchard,3590,,Copley,St,"3590  Copley St, Vancouver BC",49.2498017,-123.0578738,3,100,,range of varieties of perenial fruit and vegetables,,City,Environmental Youth Alliance,membership@copleycommunityorchard.com,http://www.copleycommunityorchard.com
+FA094,2012,Marpole Family Place,1305,W,70th,Av,"1305 W 70th Av, Vancouver BC",49.2087963,-123.1347288,8,,,,,City,Marpole Family Place,,
+FA034,2013,City Hall expansion,453,W,12th,Av,"453 W 12th Av, Vancouver BC",49.2613159,-123.1139357,10,,,,,City,Evergreen,vancouvercityhallgarden@gmail.com,http://www.evergreen.ca
+FA051,2013,Dundee,5395,,Dundee,St,"5395  Dundee St, Vancouver BC",49.2357653,-123.0479743,30,6,,,,City,Dundee Court Housing Co-op,dundeegardens@hotmail.com,
+FA150,2013,World in a Garden,7249,,Cypress,St,"7249  Cypress St, Vancouver BC",49.2200920,-123.1504440,6,,,,,City,World in a Garden,info@theworldinagarden.com ,www.theworldinagarden.com
+FA042,2014,Creekside Community Recreation Centre Collaborative,1,,Athletes,Way,"1  Athletes Way, Vancouver BC",49.2717780,-123.1046587,23,10,,,,City,Creekside Community Centre Staff,thegardenatcreekside@gmail.com,
+FA007,,Arbutus Victory,7176,E,,Boulevard,"7176 E  Boulevard, Vancouver BC",49.2209834,-123.1505481,66,,,,,City,City of Vancouver,communitygardens@vancouver.ca,
+FA030,,China Creek Housing Co-op,1230,E, 8th ,Av,"1230 E  8th  Av, Vancouver BC",49.2643106,-123.0832689,30,,,,,City,China Creek Housing Co-op,,
+FA044,,Cypress,1800,W,6th,Av,"1800 W 6th Av, Vancouver BC",49.2662772,-123.1456636,65,1,,"Clapp's Favourite Pear, dwarf",,City,,cypress@vcn.bc.ca,http://www.cypresscommunitygarden.ca/
+FA041,1992,Cottonwood Community Garden,857,,Malkin,Av,"857  Malkin Av, Vancouver BC",49.2739359,-123.0833850,139,26,Expansion in 2010 - 50 beds with improved accessibility,"Apple, cherry, plum, fig, Asian pear, hazelnut, Saskatoon, Satsuma Plum, Pacific Crabapple, Heritage Apples",,City and Park Boa,Strathcona Community Gardeners Society,cottonwoodgarden@gmail.com,http://www.cottonwoodgarden.com/
+FA099,2006,Means of Production Garden,1001,E,7th,Av,"1001 E 7th Av, Vancouver BC",49.2652991,-123.0849930,20,25,,"Mix of cherry, plum, apple",,City and Park Boa,Environmental Youth Alliance,info@eya.ca,http://www.eya.ca/
+FA114,2015,Pine Street Community Garden (6th and Fir Park),1605,W,6th,Av,"1605 W 6th Av, Vancouver BC",49.2663229,-123.1417092,20,16,,"Apple, pear, plum, cherry",,City and Park Boa,Pine Street Community Garden Society,pinestreetcommunitygardens@gmail.com,
+FA103,2006,MOBY,1737,E,11th,Av,"1737 E 11th Av, Vancouver BC",49.2604731,-123.0688879,45,,,,,City and Translin,My Own Back Yard,mobycommunitygarden@gmail.com,http://mobygarden.wordpress.com/
+FA060,2007,Frog Hollow Neighbourhood House Garden 1,2703,E,1st ,Av,"2703 E 1st  Av, Vancouver BC",49.2698011,-123.0493039,5,,,,,Other,Frog Hollow Neighbourhood House,eva@froghollow.bc.ca,http://www.froghollow.bc.ca
+FA061,2007,Frog Hollow Neighbourhood House Garden 2,2131,,Renfrew ,St,"2131  Renfrew  St, Vancouver BC",49.2654085,-123.0443930,5,,,,,Other,Frog Hollow Neighbourhood House,eva@froghollow.bc.ca,http://www.froghollow.bc.ca
+FA125,2008,South Vancouver Youth Centre Day Program,4866,,Fraser,St,"4866  Fraser St, Vancouver BC",49.2406636,-123.0902841,3,,,,,Other,South Van Youth Ctr Day Program,,
+FA087,2009,Kiwassa Neighbourhood House Community Garden,2425,,Oxford,St,"2425  Oxford St, Vancouver BC",49.2857204,-123.0560500,11,,,,,Other,Kiwassa Neighbourhood House,nancym@kiwassa.ca,http://www.kiwassa.ca/
+FA068,2011,Grandview Terrace,2075,,Woodland,Drive,"2075  Woodland Drive, Vancouver BC",49.2662333,-123.0736131,12,,,,,Other,BC Housing,gwfcnetwork@gmail.com,http://gwfoodconnection.wordpress.com/
+FA069,,Grass Roots Community Garden,478,E, Hastings ,St,"478 E  Hastings  St, Vancouver BC",49.2809398,-123.0936723,10,,,,,Other,Servants Canada,,
+FA073,,Hemlock Court,1411,E,17th,Av,"1411 E 17th Av, Vancouver BC",49.2557102,-123.0754088,4,,,,,Other,Hemlock Court Housing/Metro Housing,,
+FA079,,Kaslo Gardens Community Vegetable Garden,2765,,Cooperative,Way,"2765  Cooperative Way, Vancouver BC",49.2574360,-123.0490748,16,,,,,Other,Kaslo Gardens Housing Cooperative,,
+FA126,1978,Sparwood Park,6998,,Arlington,St,"6998  Arlington St, Vancouver BC",49.2202710,-123.0293224,0,17,,"Crabapple, hazelnut",,Park Board,,,
+FA133,1985,Strathcona Community Garden,857,,Malkin,Av,"857  Malkin Av, Vancouver BC",49.2739359,-123.0833850,200,104,,"Bramley's seedling apple; cannor select; cortland; golden delicious smoothee; jonafree; nova mac; shamrock; flemish beauty; hosui; golden spice (hardy); ure pear (hardy); italian plum; pembina plum (hardy); redglow plum (hardy); compact stella cherry; lapin cherry; schatten morello cherry; van cherry; conference dwarf pear; flemish beauty dwarf pear; highland dwarf pear; red sensation dwarf pear; sierra dwarf pear; persimmon fuju and more, Satsuma Plum, Jonamac Apple, Shamrock Apple, Northern Spy Apple, Meteor cherry",,Park Board,Strathcona Community Gardeners Soc.,strathcona.garden.info@gmail.com,http://strathconagardens.ca/
+FA057,1986,Fraser River Park,8705,,Angus,Drive,"8705  Angus Drive, Vancouver BC",49.2082762,-123.1518406,0,36,,Native Crabapple,,Park Board,,,
+FA085,1986,Kitsilano Community Garden,2027,W,6th,Av,"2027 W 6th Av, Vancouver BC",49.2664025,-123.1504383,55,15,,"Apple (2), Pear (2), Cheery (2), Plum (4), Apricot (1), Hazelnut (1), Fig (1), Apple/Pear (2)",,Park Board,Kitsilano Community Garden Association, kitsilanogarden@telus.net,http://kitsilanocommunitygarden.blogspot.ca/
+FA121,1988,Sahalli  Community Garden,2398,,Fraser,St,"2398  Fraser St, Vancouver BC",49.2636848,-123.0885931,54,,,,,Park Board,Urban Diggers Society,dig@vcn.bc.ca,http://dig.vcn.bc.ca/
+FA052,1996,Elisabeth Rogers Community Garden,110,W,7th ,Av,"110 W 7th  Av, Vancouver BC",49.2643344,-123.1081850,56,12,,"Fuji (red sport), Jonagold, Nova Mac, Italian plum, Damson plum, Dwarf Comice pear, Dwarf Red Sensation pear, dwarf Sierra Pear",,Park Board,Urban Diggers Society,waitlist.ercg@gmail.com,http://dig.vcn.bc.ca/
+FA098,1996,McSpadden Park Community Garden,2125,,Victoria ,Drive,"2125  Victoria  Drive, Vancouver BC",49.2662778,-123.0666293,18,,,,,Park Board,McSpadden Agricultural Project Society,mcspaddengarden@gmail.com,http://mcspaddengarden.blogspot.ca/
+FA117,1996,Robson Park Community Garden,565,,Kingsway,,"565  Kingsway , Vancouver BC",49.2575685,-123.0923312,44,,,,,Park Board,Urban Diggers Society,robsongarden@gmail.com,http://robsonparkgarden.wikispaces.com/
+FA147,1999,Wall Street Community Garden,2099,,Wall,St,"2099  Wall St, Vancouver BC",49.2861084,-123.0623055,42,,,,,Park Board,Kiwassa Neighbourhood Services Association,wallstreetgarden@gmail.com,
+FA135,2002,Tea Swamp Community Garden,255,E,16th,Av,"255 E 16th Av, Vancouver BC",49.2568294,-123.0993208,20,4,,"2 apple, 2 fig, raspberry canes, blueberry, grape",,Park Board,Urban Diggers Society,teaswampgarden@telus.net,http://dig.vcn.bc.ca/teaswampgarden
+FA131,2003,Stanley Park Community Garden,975,,Lagoon ,Drive,"975  Lagoon  Drive, Vancouver BC",49.2935851,-123.1393054,32,,,,,Park Board,,innersanctum2003@yahoo.ca,
+FA122,2005,Slocan Park,2750,E,29th,Av,"2750 E 29th Av, Vancouver BC",49.2436639,-123.0481960,0,6,,"Apple, pear, persimmon, walnut, ",,Park Board,,,
+FA031,2006,China Creek North Park,1001,E,7th,Av,"1001 E 7th Av, Vancouver BC",49.2611153,-123.0779800,0,38,,"Apple, cherry, pear, plum",,Park Board,,,
+FA047,2006,Douglas Park,801,W,22nd,Av,"801 W 22nd Av, Vancouver BC",49.2516505,-123.1222139,0,13,,"Pear, apple, plum, cherry",,Park Board,,,
+FA029,2008,China Creek Community Garden,1255,E,10th,Av,"1255 E 10th Av, Vancouver BC",49.2633118,-123.0787175,23,3,,"2 apple, 1 plum, and raspberry bushes",,Park Board,Urban Diggers Society,dig@vcn.bc.ca,
+FA106,2008,Nelson Park Community Garden,1020,,Bute,St,"1020  Bute St, Vancouver BC",49.2835545,-123.1306453,38,Y,Expansion in 2014 - 35 beds including accessible ones,,,Park Board,Nelson Park Community Garden Society,nelsonparkgarden@gmail.com,
+FA107,2008,New Brighton Park,3201,,New Brighton,Road,"3201  New Brighton Road, Vancouver BC",49.2887570,-123.0361825,0,50,,"Apple, pear, cherry",,Park Board,,,
+FA097,2009,McCleery Golf Course,7188,,Macdonald ,St,"7188  Macdonald  St, Vancouver BC",49.2214930,-123.1683146,0,5,,"Cherry, apple",,Park Board,,,
+FA110,2009,Pandora Park Community Garden,2325,,Franklin,St,"2325  Franklin St, Vancouver BC",49.2825401,-123.0581806,66,4,,"2 apple, 2 plum",,Park Board,Pandora Park Community Garden Society,pandoraparkcommunitygarden@gmail.com,http://pandoraparkgarden.wordpress.com/
+FA134,2009,Sunset Park,404,E,51st,Av,"404 E 51st Av, Vancouver BC",49.2227615,-123.0966600,0,29,,Fruit,,Park Board,,,
+FA056,2010,Falaise Park,3434,,Falaise,Av,"3434  Falaise Av, Vancouver BC",49.2550923,-123.0300574,0,25,,"Apple, cherry, plum, pear, peach",,Park Board,Vancouver Christian School,,
+FA059,2010,Fraserview Golf Course,7800,,Vivian,Drive,"7800  Vivian Drive, Vancouver BC",49.2134354,-123.0539872,0,30,,"Apple, cherry",,Park Board,,,
+FA006,2011,Adanac Park Community Garden,1025,,Boundary,Road,"1025  Boundary Road, Vancouver BC",49.2762276,-123.0255043,30,8,,1 Early McIntosh Apple; 1 Jonagold apple; 2 italian plum; 2 dwarf anjou pear; 1 hardy evans cherry; 1 hardy juliet cherry,,Park Board,Kiwassa Neighbourhood Services Association,adanac.park.garden@gmail.com,http://adanacparkcommunitygarden.blogspot.ca/
+FA018,2011,Cartier Park,390,E,36th,Av,"390 E 36th Av, Vancouver BC",49.2376052,-123.0975115,0,6,,Apple,,Park Board,,,
+FA063,2011,Gaston Park,3470,,Crowley ,Drive,"3470  Crowley  Drive, Vancouver BC",49.2362316,-123.0311899,0,11,,"quince, Asian pear, Saskatoon berry, Italian prune plum",,Park Board,Renfrew Collingwood Food Security Institute,foodsecurity@cnh.bc.ca,http://rcfsi.blogspot.ca
+FA067,2011,Grandview Park,1657,,Charles,St,"1657  Charles St, Vancouver BC",49.2735193,-123.0705385,0,Y,,Plum espalier,,Park Board,,,
+FA100,2011,Memorial West Park,4701,,Dunbar,St,"4701  Dunbar St, Vancouver BC",49.2442721,-123.1852852,0,15,,"Apple, pear, cherry",,Park Board,,,
+FA120,2011,Ross Park,7402,,Ross,St,"7402  Ross St, Vancouver BC",49.2161584,-123.0817007,0,15,,"Apple, pear, cherry",,Park Board,,,
+FA013,2012,Brewery Creek Community Garden,2390,,Brunswick,St,"2390  Brunswick St, Vancouver BC",49.2641072,-123.0964139,40,11,,Bramley's seedling apple; cortland apple; early macintosh apple; Jonafree apple; Jonagold apple; Lodi apple; Nova Mac apple; Evans cherry - hardy; Juliet cherry - hardy; Persimmon fuju; van cherry,,Park Board,Urban Diggers Society,brewerycreekgarden@gmail.com,http://brewerycreekgarden.wix.com/home
+FA071,2012,Hastings Community Centre Learning Garden,3096,E,Hastings,St,"3096 E Hastings St, Vancouver BC",49.2811071,-123.0388953,25,,,,,Park Board,Seasons of Food, info@seasonsoffood.com,
+FA105,2012,Mount Pleasant Community Garden,3161,,Ontario,St,"3161  Ontario St, Vancouver BC",49.2571286,-123.1062536,30,16,,"1 early macintosh apple; 1 fuji red sport apple; 2 italian plum; 1 lapins cherry; 1 stella cherry; 1 anjou pear dwarf; 1 red sensation pear dwarf; 1 persimmon fuju (espalier), lemon, Jonamac, Shamrock, Stella Cherry, Golden Russet",,Park Board,Urban Diggers Society,mtpleasantcommunitygarden@gmail.com,http://mtpleasantgarden.com
+FA109,2012,Oppenheimer Park Medicine Wheel Garden,488,,Powell,St,"488  Powell St, Vancouver BC",49.2830841,-123.0953311,8,,,,,Park Board,,,
+FA016,2013,Cambie Park Community Garden,500,W,54th,Av,"500 W 54th Av, Vancouver BC",49.2213628,-123.1179200,30,,,,,Park Board,Marpole Oakridge Community Association,southvangreenthumbs@gmail.com,http://southvangreenthumbs.blogspot.ca/
+FA025,2013,Charleson Park Community Garden,999,,Charleson,St,"999  Charleson St, Vancouver BC",49.2662995,-123.1267700,38,,,,,Park Board,False Creek South Neighbourhood Association,charlesongarden@gmail.com,
+FA149,2013,Woodland Park Community Garden,705,,Woodland,Drive,"705  Woodland Drive, Vancouver BC",49.2785071,-123.0734600,64,3,,"Jonamac Apple, Italian Prune, Pacific Crabapple",,Park Board,Village Vancouver Transition Society,woodlandparkgarden@gmail.com,http://woodlandcommunitygarden.wordpress.com
+FA038,2014,Clark Park Fruit Tree Project,1500,E,15th,Av,"1500 E 15th Av, Vancouver BC",49.2574840,-123.0737270,0,4,,,,Park Board,Grandview Community Centre Association,,
+FA058,2014,Fraserlands Community Garden (Riverfront Park),2750,E,South Kent,St,"2750 E South Kent St, Vancouver BC",49.2058110,-123.0509450,38,,,,,Park Board,South Vancouver Family Place,fraserlandscommunitygardening@gmail.com,
+FA081,2014,Kingscrest Park Community Garden,4150,,Knight,St,"4150  Knight St, Vancouver BC",49.2472960,-123.0743690,20,,,,,Park Board,Cedar Cottage Food Network Society,kingcrestgarden@gmail.com,https://cedarcottagefoodnetwork.wordpress.com/
+FA084,2014,Kitsilano Community Centre Garden,2690,,Larch,St,"2690  Larch St, Vancouver BC",49.2618643,-123.1620928,15,,,,,Park Board,Kitsilano Community Centre Association,info@cydi.ca,http://kitscc.com
+FA140,2014,Trillium Park North Artists Garden,580,,Malkin,Av,"580  Malkin Av, Vancouver BC",49.2752575,-123.0928313,4,,,,,Park Board,Earthand Gleaners Society,earthandgleaners@gmail.com,http://earthand.com
+FA074,2015,Il Centro Community Garden (Beaconsfield Park),3215,,Slocan,St,"3215  Slocan St, Vancouver BC",49.2560900,-123.0505630,40,40,,,,Park Board,Italian Cultural Centre,gardens@iccvancouver.ca,www.iccvancouver.ca
+FA152,2016,Aberthau Garden Project,4397,W ,2nd,Av,"4397 West 2nd Avenue, Vancouver BC",4949.2718413,-123.2046091,10,,,,,Park Board,,,
+FA015,pre-1970,Callister Park,2875,,Oxford,St,"2875  Oxford St, Vancouver BC",49.2861800,-123.0453833,0,4,,Apple,,Park Board,,,
+FA144,pre-1970,Valdez Park,3210,W,22nd,Av,"3210 W 22nd Av, Vancouver BC",49.2524296,-123.1764742,0,6,,Apple,,Park Board,,,
+FA008,,Arbutus Village Park,4202,,Valley,Drive,"4202  Valley Drive, Vancouver BC",49.2507172,-123.1549951,0,9,,Crabapple,,Park Board,,,
+FA010,,Barclay Heritage Square,1433,,Barclay,St,"1433  Barclay St, Vancouver BC",49.2867842,-123.1324047,0,2,,Apple,,Park Board,,,
+FA014,,Burrard View Park,650,N,Penticton,St,"650 N Penticton St, Vancouver BC",49.2912065,-123.0519175,0,1,,Cherry,,Park Board,,,
+FA017,,Carnarvon Park,2995,W,19th,Av,"2995 W 19th Av, Vancouver BC",49.2565789,-123.1714860,0,15,,Apple,,Park Board,,,
+FA022,,Champlain Heights Park,3351,,Maquinna ,Drive,"3351  Maquinna  Drive, Vancouver BC",49.2164913,-123.0326603,0,1,,Apple,,Park Board,,,
+FA024,,Charles Park,3400,,Charles,St,"3400  Charles St, Vancouver BC",49.2732079,-123.0308947,0,1,,Crabapple,,Park Board,,,
+FA046,,Delamont Park,2091,W,7th,Av,"2091 W 7th Av, Vancouver BC",49.2658197,-123.1526190,0,8,,"Cherry, Asian pear, plum, hazelnut",,Park Board,,,
+FA055,,Everett Crowley Park,8200,,Kerr,St,"8200  Kerr St, Vancouver BC",49.2111116,-123.0380764,0,2,,"Cherry, pear",,Park Board,,,
+FA145,,Van Dusen Botanical Gardens,5251,,Oak,St,"5251  Oak St, Vancouver BC",49.2375047,-123.1280384,0,Y,,Heritage apple,,Park Board,Van Dusen Botanical Garden Association,,
+FA148,,Westmount Park,4651,W,2nd,Av,"4651 W 2nd Av, Vancouver BC",49.2718445,-123.2144218,0,2,,Apple,,Park Board,,,
+FA104,2003,Mole Hill,1173,,Pendrell,St,"1173  Pendrell St, Vancouver BC",49.2824171,-123.1316422,70,1,,Italian Prune Plum,,Private,Gordon Neighbourhood House,molehillgarden@gordonhouse.org,http://www.mole-hill.ca/about/mole-hill-community-garden/
+FA075,2006,Jacob's Well #1,449,E,Hastings,St,"449 E Hastings St, Vancouver BC",49.2813078,-123.0942905,120,,,,,Private,Jacob's Well,,
+FA076,2006,Jacob's Well #2,460,E,Hastings,St,"460 E Hastings St, Vancouver BC",49.2811953,-123.0940499,120,,,,,Private,Jacob's Well,,
+FA004,2007,1755 West 14th - Private apartment building garden,1755,W,14th,Av,"1755 W 14th Av, Vancouver BC",49.2590496,-123.1448703,,,,,,Private,Apartment residents,,
+FA143,2007,Urban Acres,1601,W,1st ,Av,"1601 W 1st  Av, Vancouver BC",49.2705910,-123.1410769,30,,,,,Private,Urban Acres,,
+FA003,2008,16 Oaks,1018,W,16th,Av,"1018 W 16th Av, Vancouver BC",49.2567482,-123.1276645,55,,,,,Private,,oak.16th.garden@gmail.com,
+FA036,2008,Cityview Baptist Church,4370,,Sophia ,St,"4370  Sophia  St, Vancouver BC",49.2459664,-123.0991480,6,1,,Heritage apple,,Private,Neighbours,cityview.community.garden@gmail.com,http://cityviewchurch.ca/
+FA072,2008,Hastings St Folk Garden,117,E,Hastings,St,"117 E Hastings St, Vancouver BC",49.2814414,-123.1015964,150,,,,,Private,Portland Housing Society,,
+FA083,2008,Kitsilano Christian Community Church,1708,W,16th,Av,"1708 W 16th Av, Vancouver BC",49.2570894,-123.1437758,7,,,,,Private,Kitsilano Christian Community Church,,
+FA086,2008,Kitsilano Neighbourhood House,3683,W,4th,Av,"3683 W 4th Av, Vancouver BC",49.2686566,-123.1852422,5,,,,,Private,Kitsilano Neighbourhood House,,http://www.kitshouse.org
+FA123,2008,South Vancouver Family Place 1,7710,,Nanaimo,St,"7710  Nanaimo St, Vancouver BC",49.2143436,-123.0593383,8,,,,,Private,South Vancouver Family Place,,
+FA139,2008,The Rise on Cambie,485,W,8th,Av,"485 W 8th Av, Vancouver BC",49.2640067,-123.1144868,18,,,,,Private,Strata Council,,
+FA045,2009,Davie Village Garden,1157,,Burrard ,St,"1157  Burrard  St, Vancouver BC",49.2795117,-123.1293018,100,,,,,Private,Vancouver Public Space Network,dvgarden@gmail.com,
+FA062,2009,Garden of Eatin',2670,,Victoria,Drive,"2670  Victoria Drive, Vancouver BC",49.2606376,-123.0658918,20,,,,,Private,First Christian Reformed Church,garden.van1crc@gmail.com,http://van1crc.org/the-garden/
+FA111,2009,Pearson Farmers at 57th,500,W,57th,St,"500 W 57th St, Vancouver BC",49.2190330,-123.1169049,32,,,,,Private,,,
+FA009,2010,Atira Community Garden,400,,Hawks,Av,"400  Hawks Av, Vancouver BC",49.2810913,-123.0871212,15,,,,,Private,Atira Community Resources,,http://www.atira.bc.ca/community-garden-kitchens
+FA012,2011,Bosman Hotel,1060,,Howe,St,"1060  Howe St, Vancouver BC",49.2791632,-123.1250943,12,,,,,Private,Bosman Hotel Society,,
+FA048,2011,Dowtown Intercultural Gardeners Society (DIGS),1081,,Burrard,St,"1081  Burrard St, Vancouver BC",49.2805963,-123.1290006,46,,corrected from 120 to 46 (28 plots + 18 planters) in 201,,,Private,YMCA,info@digsvancouver.ca,http://www.digsvancouver.ca/
+FA082,2011,Kits Village Collaborative Garden,1407,,Laburnum,St,"1407  Laburnum St, Vancouver BC",49.2733270,-123.1514277,,5,,Cortland apple; Golden Reinette Apple; dwaf Anjou pear; dwarf Red Sensation pear; Persimmon Fuju,,Private,Village Vancouver,ross@villagevancouver.ca,
+FA090,2011,Langara College,6648,,Ontario,St,"6648  Ontario St, Vancouver BC",49.2245248,-123.1057890,26,,,,,Private,,,
+FA118,2011,Robson Park Coop,234,E,15th,Av,"234 E 15th Av, Vancouver BC",49.2572409,-123.0999070,40,,,,,Private,Robson Park Co-op,,
+FA064,2012,Grace Memorial Church,803,E,16th,Av,"803 E 16th Av, Vancouver BC",49.2564075,-123.0874186,15,,,,,Private,Grace Memorial Church,,
+FA089,2012,Lakeview United Church,2776,,Semlin,Drive,"2776  Semlin Drive, Vancouver BC",49.2597223,-123.0639876,6,,,,,Private,Lakeview United Church,jonathan@cglf.ca,http://www.cglf.ca
+FA128,2012,SPEC Rooftop Garden,535,,Hornby,St,"535  Hornby St, Vancouver BC",49.2857348,-123.1178337,9,,,,,Private,SPEC,,
+FA136,2012,Tenth Church,11,W,10th,Av,"11 W 10th Av, Vancouver BC",49.2623383,-123.1058605,10,,,,,Private,Tenth Church,,
+FA021,2013,Cedar Cottage Neighourhood House Edible Garden,4065,,Victoria,Drive,"4065  Victoria Drive, Vancouver BC",49.2488871,-123.0651476,12,,,,,Private,Cedar Cottage Neighbourhood House,,
+FA032,2013,Church of the Good Sheppard,189,W,11th,Av,"189 W 11th Av, Vancouver BC",49.2614867,-123.1089655,8,,,,,Private,,,
+FA050,2013,Dunbar and 41st,5580,,Dunbar,St,"5580  Dunbar St, Vancouver BC",49.2358897,-123.1850682,36,,,,,Private,PosAbilities ,canyoudigit@posAbilities.ca,
+FA053,2013,Emma G Coop,2250,,Fraser,St,"2250  Fraser St, Vancouver BC",49.2645690,-123.0887620,8,,,,,Private,,,
+FA092,2013,Maclean Housing ,705,,Jackson,Av,"705  Jackson Av, Vancouver BC",49.2784286,-123.0935914,65,,,,,Private,,,
+FA095,2013,Marpole Place expansion,1305,W,70th,Av,"1305 W 70th Av, Vancouver BC",49.2087963,-123.1347288,6,,,,,Private,,,
+FA096,2013,Matheson Heights Housing Coop,3554,,Sparrow,Place,"3554  Sparrow Place, Vancouver BC",49.2131744,-123.0257105,16,,,,,Private,,,
+FA101,2013,Menno Simmons centre,4000,W,11th,Av,"4000 W 11th Av, Vancouver BC",49.2626337,-123.1939437,10,,,,,Private,,,
+FA102,2013,Millross Gardens on Main,989,,Main,St,"989  Main St, Vancouver BC",49.2762031,-123.1004947,130,,,,,Private,Amacon,info@millrossgardensonmain.com,http://www.milrossgardensonmain.com/
+FA137,2013,The Drive Community Garden,1705,E,12th,Av,"1705 E 12th Av, Vancouver BC",49.2598290,-123.0693640,112,,,,,Private,Shifting Growth,garden@shiftinggrowth.com,www.shiftinggrowth.com
+FA002,2014,15th Avenue Coop,1255,E,15th,Av,"1255 E 15th Av, Vancouver BC",49.2571193,-123.0788387,8,,,,,Private,,,
+FA049,2014,DTES Market location,62,E ,Hastings,St,"62 E  Hastings St, Vancouver BC",49.2810918,-123.1027168,6,,,,,Private,DTES Market,,
+FA115,2014,Princess and Cordova,248,,Princess,Av,"248  Princess Av, Vancouver BC",49.2821470,-123.0914390,20,,,,,Private,Servants Canada,,
+FA011,2015,BC Seniors Living Assoc. Garden,3355,E ,5 th,Av,"3355 E 5th Av, Vancouver BC",49.2664740,-123.0325780,11,,,,,Private,BC Seniors Living Assoc. Beulah Homes Society,,
+FA091,2015,Let’s Grow Together! Community Garden ,2475,,Franklin,St,"2475 Franklin St, Vancouver BC",49.2822110,-123.0549100,6,,,,,Private,St. David of Wales Angclican Church,,
+FA119,2015,Rooted for Life Garden,1415,,Barclay,St,"1415  Barclay St, Vancouver BC",49.2873550,-123.1328720,,,,,,Private,,,
+FA130,2015,St. Augustines Anglican Church,8680,,Hudson ,St,"8680  Hudson  St, Vancouver BC",49.2071780,-123.1342660,8,,,,,Private,St. Augustines Anglican Church,,
+FA138,2015,The James Garden & Social Community,288,W,1st ,Av,"288 W 1st Ave, Vancouver",49.2690030,-123.1117630,12,,,,,Private,,,
+FA157,2016,City Heights,155,E,37,Ave,155 East 37th Ave,49.2322280,-123.1028330,,,,,,Private,City Heights,,
+FA154,2016,Community Alternatives Coop Community Garden,1937,W,2nd,Ave,"1937 W 2nd Avenue, Vancouver BC",49.2700650,-123.1491940,20,,,,,Private,,,
+FA151,2016,Deeper Roots Seniors Community Garden,5350,,Baillie,St,"5350 Baillie Street, Vancouver BC",49.2369358,-123.1218448,10,,,,,Private,Oakridge Adventist Church,,deeproots.ca
+FA156,2016,Pender Community Garden,2595,E ,Pender,St,2595 E Pender Street,49.2806800,-123.0522930,,,,,,Private,,,
+FA155,2016,Vera Community Garden,575,SW,Marine ,Drive,"575 SW Marine Drive, Vancouver BC",49.2096830,-123.1191790,12,,,,,Private,,,www.communityalternativescoop.com
+FA 151,2016,HFBC Housing Foundation ,2924,,Venables ,St,"2924 Venables St, Vancouver, BC",49.2762110,-123.0432810,12,,,,,Private,HFBC Housing Foundation ,,
+FA 152,2016,HFBC Housing Foundation ,2950,,Euclid,St,"2950 Euclid St, Vancouver, BC",49.2401110,-123.0436970,12,,,,,Private,HFBC Housing Foundation ,,
+FA001,Pre-2010,0 - Private Developments - Community Shared,,,,,,,,507,,,,,Private,,,
+FA005,,2624 Franklin St - Apartment,2624,,Franklin,St,"2624  Franklin St, Vancouver BC",49.2818051,-123.0512664,2,,,,,Private,,,
+FA023,,Champlain Place Community Garden,3347,E,58th,Av,"3347 E 58th Av, Vancouver BC",49.2167296,-123.0352463,8,,,,,Private,BC Housing,,
+FA070,,Habitat Villa - Metro Housing,3859,W,2nd,Av,"3859 W 2nd Av, Vancouver BC",49.2704557,-123.1903871,4,,,,,Private,Habitat Villa/Metro Housing,,
+FA124,,South Vancouver Family Place 2,7715,,Muirfield,Drive,"7715  Muirfield Drive, Vancouver BC",49.2141567,-123.0565190,3,,,,,Private,South Vancouver Family Place,,
+FA066,pre 2000,Grandview Elementary Community Garden,2055,,Woodland,Drive,"2055  Woodland Drive, Vancouver BC",49.2659170,-123.0783100,24,yes,3mx3m community plots in addition to school garden,yes,Earth Tub composter,Other,Grandview Garden Coordinator (VCH SMART funding),,
+FA039,2006,Collingwood Community Gardens,3100,,Vanness,Av,"3100  Vanness Av, Vancouver BC",49.2418609,-123.0406868,30,,,,,Translink,Renfrew Collingwood Food Security Institute,foodsecurity@cnh.bc.ca,http://rcfsi.blogspot.ca
+FA019,2008,Cedar Cottage Garden,2021,,Stainsbury ,Av,"2021  Stainsbury  Av, Vancouver BC",49.2514440,-123.0642552,61,13,,"EARLY MCINTOSH; GOLDEN DELICIOUS SMOOTHEE APPLE; SHAMROCK APPLE; CRIMSON PASSION CHERRY; RAINIER CHERRY; SKEENA CHERRY; DAMSON PLUM; ITALIAN PLUM; REDGLOW PLUM - HARDY; PERSIMMON, plums, fig, pear",,Translink,Cedar Cottage Garden Society ,ccgmembershipteam@gmail.com,https://sites.google.com/site/cedarcottagegarden/
