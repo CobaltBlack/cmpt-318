@@ -28,7 +28,6 @@ CITY_FILE = globvars.RESOURCE_FILES_PATH + "city_data.csv"
 class DataCleaner:
     def CleanRawData():
         DataCleaner.CleanCrimeData()
-        DataCleaner.CleanSchoolsData()
 
         if not os.path.isfile(CITY_FILE):
             city_data = pd.DataFrame(columns=["X", "Y", "TYPE"])
