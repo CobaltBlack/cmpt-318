@@ -1,2 +1,3 @@
 ## Python Specific files
 **/__pycache__/
+*.pyc
