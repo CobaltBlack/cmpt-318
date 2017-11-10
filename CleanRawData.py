@@ -28,11 +28,19 @@ CITY_FILE = globvars.RESOURCE_FILES_PATH + "city_data.csv"
 class DataCleaner:
     def CleanRawData():
         DataCleaner.CleanCrimeData()
+        DataCleaner.CleanSchoolsData()
 
         if not os.path.isfile(CITY_FILE):
             city_data = pd.DataFrame(columns=["X", "Y", "TYPE"])
             city_data = city_data.append(DataCleaner.CleanRTSData(), ignore_index=True)
             city_data = city_data.append(DataCleaner.CleanParksData(), ignore_index=True)
+            city_data = city_data.append(DataCleaner.CleanCentersData(), ignore_index=True)
+            city_data = city_data.append(DataCleaner.CleanGardensData(), ignore_index=True)
+            city_data = city_data.append(DataCleaner.CleanGraffitiData(), ignore_index=True)
+            city_data = city_data.append(DataCleaner.CleanGreenestCityData(), ignore_index=True)
+            city_data = city_data.append(DataCleaner.CleanHomelessSheltersData(), ignore_index=True)
+            city_data = city_data.append(DataCleaner.CleanSchoolsData(), ignore_index=True)
+            city_data = city_data.dropna(axis=0)
             city_data.to_csv(CITY_FILE, index=False)
 
         return CRIME_FILE, CITY_FILE
@@ -53,7 +61,12 @@ class DataCleaner:
 
 
     def ConvertToXY(x, feature="NA"):
-        utm_coors = utm.from_latlon(x['Lat'], x['Long'])
+        try:
+            utm_coors = utm.from_latlon(x['Lat'], x['Long'])
+        except Exception as e:
+            print(e)
+            return
+
         # Vancouver is located in zone 10, the value should not change
         assert utm_coors[2] == 10
         return pd.Series({'X': utm_coors[0], 'Y': utm_coors[1], 'TYPE': feature})
@@ -61,18 +74,20 @@ class DataCleaner:
 
     # Returns a dataframe containing the X,Y coordinates for each rapid transit station
     def CleanRTSData():
-        rts = pd.read_csv(globvars.RAW_DATA_FILEPATH + "rapid_transit_stations.csv",
+        data = pd.read_csv(globvars.RAW_DATA_FILEPATH + "rapid_transit_stations.csv",
                           usecols=['X','Y'])
-        rts.columns = ['Long', 'Lat']
-        cleaned_rts = rts.apply(DataCleaner.ConvertToXY, axis=1, feature="RTS")
-        return cleaned_rts
+        data = data.dropna(axis=0)
+        data.columns = ['Long', 'Lat']
+        cleaned_data = data.apply(DataCleaner.ConvertToXY, axis=1, feature="RTS")
+        return cleaned_data
 
 
     # Returns a dataframe containing the X,Y coordinates of each park
     def CleanParksData():
-        parks = pd.read_csv(globvars.RAW_DATA_FILEPATH + "parks.csv",
+        data = pd.read_csv(globvars.RAW_DATA_FILEPATH + "parks.csv",
                             usecols=["GoogleMapDest"], index_col=None)
-        latlongs = parks.apply(DataCleaner.SplitLatLong, axis=1)
+        data = data.dropna(axis=0)
+        latlongs = data.apply(DataCleaner.SplitLatLong, axis=1)
         cleaned_parks = latlongs.apply(DataCleaner.ConvertToXY, axis=1, feature="PARK")
         return cleaned_parks
 
@@ -81,3 +96,63 @@ class DataCleaner:
     def SplitLatLong(x):
         coords = x['GoogleMapDest'].split(',')
         return pd.Series({'Lat': float(coords[0]), 'Long': float(coords[1])})
+
+
+    # Returns a dataframe containing the X,Y coordinates
+    def CleanCentersData():
+        data = pd.read_csv(globvars.RAW_DATA_FILEPATH + "community_centres.csv",
+                            usecols=['LATITUDE', 'LONGITUDE'], index_col=None)
+        data.columns = ['Lat', 'Long']
+        data = data.dropna(axis=0)
+        cleaned_data = data.apply(DataCleaner.ConvertToXY, axis=1, feature="COMMUNITYCENTER")
+        return cleaned_data
+
+
+    # Returns a dataframe containing the X,Y coordinates
+    def CleanGardensData():
+        data = pd.read_csv(globvars.RAW_DATA_FILEPATH + "CommunityGardensandFoodTrees.csv",
+                            usecols=['LATITUDE', 'LONGITUDE'], index_col=None)
+        data.columns = ['Lat', 'Long']
+        data = data.dropna(axis=0)
+        cleaned_data = data.apply(DataCleaner.ConvertToXY, axis=1, feature="GARDEN")
+        return cleaned_data
+
+
+    # Returns a dataframe containing the X,Y coordinates
+    def CleanGraffitiData():
+        data = pd.read_csv(globvars.RAW_DATA_FILEPATH + "graffiti.csv",
+                            usecols=['X', 'Y'], index_col=None)
+        data.columns = ['Long', 'Lat']
+        data = data.dropna(axis=0)
+        cleaned_data = data.apply(DataCleaner.ConvertToXY, axis=1, feature="GRAFFITI")
+        return cleaned_data
+
+
+    # Returns a dataframe containing the X,Y coordinates
+    def CleanGreenestCityData():
+        data = pd.read_csv(globvars.RAW_DATA_FILEPATH + "greenest_city_projects.csv",
+                            usecols=['LATITUDE', 'LONGITUDE'], index_col=None)
+        data.columns = ['Lat', 'Long']
+        data = data.dropna(axis=0)
+        cleaned_data = data.apply(DataCleaner.ConvertToXY, axis=1, feature="CITYPROJECT")
+        return cleaned_data
+
+
+    # Returns a dataframe containing the X,Y coordinates
+    def CleanHomelessSheltersData():
+        data = pd.read_csv(globvars.RAW_DATA_FILEPATH + "homeless_shelters.csv",
+                            usecols=['X', 'Y'], index_col=None)
+        data.columns = ['Long', 'Lat']
+        data = data.dropna(axis=0)
+        cleaned_data = data.apply(DataCleaner.ConvertToXY, axis=1, feature="HOMELESS")
+        return cleaned_data
+
+
+    # Returns a dataframe containing the X,Y coordinates
+    def CleanSchoolsData():
+        data = pd.read_csv(globvars.RAW_DATA_FILEPATH + "schools.csv",
+                            usecols=['LATITUDE', 'LONGITUDE'], index_col=None)
+        data.columns = ['Lat', 'Long']
+        data = data.dropna(axis=0)
+        cleaned_data = data.apply(DataCleaner.ConvertToXY, axis=1, feature="SCHOOL")
+        return cleaned_data
