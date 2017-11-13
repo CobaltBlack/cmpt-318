@@ -9,7 +9,7 @@ import pandas as pd
 import utm
 import os
 
-MIN_YEAR = 2015
+YEAR = 2016
 USABLE_CRIMES = [
     'Mischief',
     'Theft from Vehicle' ,
@@ -35,7 +35,6 @@ class DataCleaner:
             city_data = city_data.append(DataCleaner.CleanParksData(), ignore_index=True)
             city_data = city_data.append(DataCleaner.CleanCentersData(), ignore_index=True)
             city_data = city_data.append(DataCleaner.CleanGardensData(), ignore_index=True)
-            city_data = city_data.append(DataCleaner.CleanGraffitiData(), ignore_index=True)
             city_data = city_data.append(DataCleaner.CleanGreenestCityData(), ignore_index=True)
             city_data = city_data.append(DataCleaner.CleanHomelessSheltersData(), ignore_index=True)
             city_data = city_data.append(DataCleaner.CleanSchoolsData(), ignore_index=True)
@@ -50,7 +49,7 @@ class DataCleaner:
         crimes = pd.read_csv(globvars.RAW_DATA_FILEPATH + 'crime_csv_all_years.csv',
                              sep=',', header=0, usecols=['TYPE','YEAR','HUNDRED_BLOCK','X','Y'])
 
-        crimes = crimes[crimes.YEAR >= MIN_YEAR]
+        crimes = crimes[crimes.YEAR == YEAR]
         # The X and Y values are set to zero for any crime against a person to
         #   protect their identity, which means we can't use the data
         crimes = crimes[(crimes.X != 0.0) | (crimes.Y != 0.0)]
@@ -114,16 +113,6 @@ class DataCleaner:
         data.columns = ['Lat', 'Long']
         data = data.dropna(axis=0)
         cleaned_data = data.apply(DataCleaner.ConvertToXY, axis=1, feature="GARDEN")
-        return cleaned_data
-
-
-    # Returns a dataframe containing the X,Y coordinates
-    def CleanGraffitiData():
-        data = pd.read_csv(globvars.RAW_DATA_FILEPATH + "graffiti.csv",
-                            usecols=['X', 'Y'], index_col=None)
-        data.columns = ['Long', 'Lat']
-        data = data.dropna(axis=0)
-        cleaned_data = data.apply(DataCleaner.ConvertToXY, axis=1, feature="GRAFFITI")
         return cleaned_data
 
 
