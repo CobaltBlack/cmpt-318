@@ -54,11 +54,13 @@ def main():
 
     crime_kd = KDTree(crime_data[['X', 'Y']])
     dist, ind = crime_kd.query(city_data[['X','Y']].values, k=10)
+    # Ignore crimes that are too far away from the feature??
+    city_data['crimes_ind'] = pd.Series(list(ind))
+    city_data['crimes_dist'] = pd.Series(list(dist))
     
-    # Index into crime rows for each of the k nearest neighbours
-    # Append the crime data to the end of each row in city_data
-    # Adjust k as needed
-    # Ignore crimes that are too far away from the feature
+    # Find the avergae distance to crimes per city feature type
+    city_data['avg_dist'] = city_data['crimes_dist'].apply(lambda x: sum(x)/len(x))
+    mean_dist = city_data.groupby('TYPE').avg_dist.mean()
 
     
 if __name__ == "__main__":
