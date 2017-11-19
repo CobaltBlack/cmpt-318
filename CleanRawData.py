@@ -10,15 +10,6 @@ import utm
 import os
 
 YEAR = 2016
-USABLE_CRIMES = [
-    'Mischief',
-    'Theft from Vehicle' ,
-    'Break and Enter Residential/Other',
-    'Theft of Vehicle',
-    'Break and Enter Commercial',
-    'Other Theft',
-    'Theft of Bicycle'
-]
 
 CRIME_FILE = globvars.RESOURCE_FILES_PATH + "crime_data.csv"
 CITY_FILE = globvars.RESOURCE_FILES_PATH + "city_data.csv"
@@ -53,7 +44,7 @@ class DataCleaner:
         # The X and Y values are set to zero for any crime against a person to
         #   protect their identity, which means we can't use the data
         crimes = crimes[(crimes.X != 0.0) | (crimes.Y != 0.0)]
-        crimes = crimes[crimes['TYPE'].isin(USABLE_CRIMES)]
+        crimes = crimes[crimes['TYPE'].isin(globvars.USABLE_CRIMES)]
 
         crimes.to_csv(CRIME_FILE, index=False)
 
