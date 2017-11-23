@@ -45,6 +45,24 @@ def PlotData(crime_data, city_data):
     plt.scatter(city_data['X'], city_data['Y'], c='blue',  s=1)
     plt.savefig('city.jpg')
 
+
+# Find the average distance to each type of city feature from each type of crime
+#   Given all crimes, find the distance to the nearest of each type of feature
+def CrimeDistanceFeatureType(crime_data, city_data):
+    city_features = city_data.groupby('TYPE')
+    # Collect the distances to the nearest city feature of each type per crime
+    for name, group in city_features:
+        feature_kd = KDTree(group[['X', 'Y']])
+        dist, ind = feature_kd.query(crime_data[['X', 'Y']].values, k=1)
+        crime_data['nearest_' + name] = pd.Series(item[0] for item in dist)
+    
+    # Aggregate the distances for each type of crime
+    crime_types = crime_data.groupby('TYPE')
+    nearest_columns = [col for col in crime_data.columns if col.startswith('nearest_')]
+    for name_crime, group_crime in crime_types:
+        print('\n' + name_crime + ':')
+        print(group_crime[nearest_columns].describe(include=[np.number]))
+
 def main():
     CRIME_FILE, CITY_FILE = DataCleaner.CleanRawData()
     try:
