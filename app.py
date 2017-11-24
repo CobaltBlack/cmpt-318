@@ -13,6 +13,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KDTree
 from scipy.stats import *
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
 
 color_map = {
     'Mischief': 'b',
@@ -46,6 +47,11 @@ def PlotData(crime_data, city_data):
     plt.savefig('city.jpg')
 
 
+def FeatureDistanceHelper(crime_data, crimes, feature):
+    df = crime_data.loc[crime_data['TYPE'].isin(crimes)]
+    posthoc = pairwise_tukeyhsd(df['nearest_'+feature], df['TYPE'], alpha=0.05)
+    print(posthoc)
+
 # Find the average distance to each type of city feature from each type of crime
 #   Given all crimes, find the distance to the nearest of each type of feature
 def CrimeDistanceFeatureType(crime_data, city_data):
@@ -57,11 +63,11 @@ def CrimeDistanceFeatureType(crime_data, city_data):
         crime_data['nearest_' + name] = pd.Series(item[0] for item in dist)
     
     # Aggregate the distances for each type of crime
-    crime_types = crime_data.groupby('TYPE')
-    nearest_columns = [col for col in crime_data.columns if col.startswith('nearest_')]
-    for name_crime, group_crime in crime_types:
-        print('\n' + name_crime + ':')
-        print(group_crime[nearest_columns].describe(include=[np.number]))
+    #crime_types = crime_data.groupby('TYPE')
+    
+    FeatureDistanceHelper(crime_data, globvars.USABLE_CRIMES, 'HOMELESS')
+        
+    
 
 def main():
     CRIME_FILE, CITY_FILE = DataCleaner.CleanRawData()
@@ -71,6 +77,9 @@ def main():
     except Exception as e:
         print (e)
         sys.exit(1)
+        
+        
+    CrimeDistanceFeatureType(crime_data, city_data)
 
     crime_kd = KDTree(crime_data[['X', 'Y']])
     dist, ind = crime_kd.query(city_data[['X','Y']].values, k=50)
@@ -109,9 +118,9 @@ def main():
     crime_data['avg_dist'] = crime_data['city_dist'].apply(lambda x: sum(x)/len(x))
     mean_dist_crime = crime_data.groupby('TYPE').avg_dist.mean()
 
-    print(mean_dist_crime)
-    print(city_data.columns)
-    print(crime_data.columns)
+#    print(mean_dist_crime)
+#    print(city_data.columns)
+#    print(crime_data.columns)
         
         
 if __name__ == "__main__":
