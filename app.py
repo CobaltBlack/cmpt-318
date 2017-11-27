@@ -47,9 +47,9 @@ def PlotData(crime_data, city_data):
     plt.savefig('city.jpg')
 
 
-def FeatureDistanceHelper(crime_data, crimes, feature):
+def FeatureDistanceHelper(crime_data, crimes, feature, alpha = 0.05):
     df = crime_data.loc[crime_data['TYPE'].isin(crimes)]
-    posthoc = pairwise_tukeyhsd(df['nearest_'+feature], df['TYPE'], alpha=0.05)
+    posthoc = pairwise_tukeyhsd(df['nearest_'+feature], df['TYPE'], alpha=alpha)
     print(posthoc)
 
 # Find the average distance to each type of city feature from each type of crime
@@ -65,8 +65,55 @@ def CrimeDistanceFeatureType(crime_data, city_data):
     # Aggregate the distances for each type of crime
     #crime_types = crime_data.groupby('TYPE')
     
-    FeatureDistanceHelper(crime_data, globvars.USABLE_CRIMES, 'HOMELESS')
-        
+    alpha = 0.05 / 7
+    
+    print('CITY PROJECT TUKEY:')
+    FeatureDistanceHelper(crime_data, ['Mischief',
+                                      'Break and Enter Residential/Other',
+                                       'Break and Enter Commercial',
+                                      'Other Theft'], 
+                          'CITYPROJECT', alpha)
+    
+    print('RTS TUKEY:')
+    FeatureDistanceHelper(crime_data, ['Mischief',
+                                      'Break and Enter Residential/Other',
+                                       'Break and Enter Commercial',
+                                      'Other Theft',
+                                      'Theft of Vehicle',
+                                      'Theft of Bicycle'], 
+                          'RTS', alpha)
+    
+    print('PARK TUKEY:')
+    FeatureDistanceHelper(crime_data, globvars.USABLE_CRIMES, 'PARK', alpha)
+    
+    print('COMMUNITY CENTER TUKEY:')
+    FeatureDistanceHelper(crime_data, ['Mischief',
+                                      'Break and Enter Residential/Other',
+                                      'Other Theft',
+                                      'Theft of Vehicle',
+                                      'Theft of Bicycle',
+                                      'Theft from Vehicle'], 
+                          'COMMUNITYCENTER', alpha)
+    
+    print('HOMELESS SHELTER TUKEY:')
+    FeatureDistanceHelper(crime_data, globvars.USABLE_CRIMES, 'HOMELESS', alpha)
+    
+    print('SCHOOL TUKEY:')
+    FeatureDistanceHelper(crime_data, ['Mischief',
+                                      'Break and Enter Residential/Other',
+                                      'Other Theft',
+                                      'Theft of Vehicle',
+                                      'Theft of Bicycle',
+                                      'Theft from Vehicle'], 
+                          'SCHOOL', alpha)
+    
+    print('GARDEN TUKEY:')
+    FeatureDistanceHelper(crime_data, ['Mischief',
+                                      'Break and Enter Residential/Other',
+                                      'Other Theft',
+                                      'Theft of Vehicle',
+                                      'Theft from Vehicle'], 
+                          'GARDEN', alpha)
     
 
 def main():
@@ -76,27 +123,11 @@ def main():
         city_data = pd.read_csv(CITY_FILE)
     except Exception as e:
         print (e)
-        sys.exit(1)
-        
-     # Do the analysis...
-#    crime_data = crime_data[crime_data['Y'] < 5460250]
-    crime_data['color'] = crime_data['TYPE'].apply(lambda x: color_map[x])
-    plt.figure(figsize=(50,50))
-    plt.scatter(crime_data['X'], crime_data['Y'], c=crime_data['color'],  s=5)
-#    plt.show()
-    plt.savefig('crime.jpg')
-    
-#    city_data = city_data[city_data['TYPE'] != 'GRAFFITI']
-    city_data['color'] = city_data['TYPE'].apply(lambda x: city_color_map[x])
-    plt.figure(figsize=(20,20))
-    plt.scatter(city_data['X'], city_data['Y'], c=city_data['color'],  s=1)
-#    plt.show()
-    plt.savefig('city.jpg')
-    
-    return  
-    
+        sys.exit(1)     
     
     CrimeDistanceFeatureType(crime_data, city_data)
+    
+    return
 
     crime_kd = KDTree(crime_data[['X', 'Y']])
     dist, ind = crime_kd.query(city_data[['X','Y']].values, k=50)
