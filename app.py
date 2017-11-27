@@ -68,6 +68,28 @@ def CrimeDistanceFeatureType(crime_data, city_data):
     FeatureDistanceHelper(crime_data, globvars.USABLE_CRIMES, 'HOMELESS')
         
     
+def ChiTests(crime_data, city_data):
+     # Analyze crimes within a radius of each city feature
+    #
+
+    # Sum nearby crime types for each city feature type
+    # e.g. Total number of 'thefts of bicyles' near 'school'
+    observed = []
+    for crime_type in globvars.USABLE_CRIMES:
+        crime_type_counts = city_data.groupby('TYPE')[crime_type + '_nearby_count'].sum()
+        observed.append(list(crime_type_counts.values))
+#        print(crime_type_counts)
+
+    np.set_printoptions(threshold=np.nan)
+
+    # Contingency table test
+    observed = np.array(observed)
+    _, p, dof, expected = chi2_contingency(observed)
+    print('p-value of chi-sqaured test: {}'.format(p))
+
+    print('Percentage of deviation from expected independent values:')
+    print(np.around((observed - expected)/expected*100))
+    
 
 def main():
     CRIME_FILE, CITY_FILE = DataCleaner.CleanRawData()
@@ -77,24 +99,6 @@ def main():
     except Exception as e:
         print (e)
         sys.exit(1)
-        
-     # Do the analysis...
-#    crime_data = crime_data[crime_data['Y'] < 5460250]
-    crime_data['color'] = crime_data['TYPE'].apply(lambda x: color_map[x])
-    plt.figure(figsize=(50,50))
-    plt.scatter(crime_data['X'], crime_data['Y'], c=crime_data['color'],  s=5)
-#    plt.show()
-    plt.savefig('crime.jpg')
-    
-#    city_data = city_data[city_data['TYPE'] != 'GRAFFITI']
-    city_data['color'] = city_data['TYPE'].apply(lambda x: city_color_map[x])
-    plt.figure(figsize=(20,20))
-    plt.scatter(city_data['X'], city_data['Y'], c=city_data['color'],  s=1)
-#    plt.show()
-    plt.savefig('city.jpg')
-    
-    return  
-    
     
     CrimeDistanceFeatureType(crime_data, city_data)
 
@@ -126,7 +130,7 @@ def main():
 #        print(mean_dist)
 
         # Get number of crimes within a radius
-        counts = curr_crime_kd.query_radius(city_data[['X','Y']].values, 200, count_only=True)
+        counts = curr_crime_kd.query_radius(city_data[['X','Y']].values, globvars.LOCALITY_RADIUS, count_only=True)
         city_data[crime_type + '_nearby_count'] = pd.Series(list(counts))
 
 
@@ -144,28 +148,8 @@ def main():
 #    print(city_data.columns)
 #    print(crime_data.columns)
 
-
-    #
-    # Analyze crimes within a radius of each city feature
-    #
-
-    # Sum nearby crime types for each city feature type
-    # e.g. Total number of 'thefts of bicyles' near 'school'
-    observed = []
-    for crime_type in globvars.USABLE_CRIMES:
-        crime_type_counts = city_data.groupby('TYPE')[crime_type + '_nearby_count'].sum()
-        observed.append(list(crime_type_counts.values))
-#        print(crime_type_counts)
-
-    # Contingency table test
-    observed = np.array(observed)
-    chi2_res, p, dof, expected = chi2_contingency(observed)
-    print(chi2_res)
-    print(p)
-
-    print(observed)
-    print(np.around(expected))
-    print(np.around(observed - expected))
+    ChiTests(crime_data, city_data)
+   
 
 
 if __name__ == "__main__":
