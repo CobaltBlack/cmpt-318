@@ -15,3 +15,13 @@ USABLE_CRIMES = [
     'Other Theft',
     'Theft of Bicycle'
 ]
+
+CITY_FEATURE_TYPES = [
+    'RTS',
+    'PARK',
+    'COMMUNITYCENTER',
+    'GARDEN',
+    'HOMELESS',
+    'CITYPROJECT',
+    'SCHOOL'
+]

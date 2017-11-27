@@ -100,14 +100,19 @@ def main():
         # Ignore crimes that are too far away from the feature
         city_data[crime_type + '_ind'] = pd.Series(list(ind))
         city_data[crime_type + '_dist'] = pd.Series(list(dist))
-        
-        # Find the avergae distance to crimes per city feature type
+
+        # Find the average distance to crimes per city feature type
         city_data[crime_type + '_avg_dist'] = city_data[crime_type + '_dist'].apply(lambda x: sum(x)/len(x))
         
         mean_dist = city_data.groupby('TYPE')[crime_type + '_avg_dist'].mean()
 #        print("\n\navg dist for crime", crime_type)
 #        print(mean_dist)
-            
+
+        # Get number of crimes within a radius
+        counts = curr_crime_kd.query_radius(city_data[['X','Y']].values, 200, count_only=True)
+        city_data[crime_type + '_nearby_count'] = pd.Series(list(counts))
+
+
     # For each crime, get closest city features
     city_kd = KDTree(city_data[['X', 'Y']])
     dist, ind = city_kd.query(crime_data[['X','Y']].values, k=5)
@@ -121,7 +126,30 @@ def main():
 #    print(mean_dist_crime)
 #    print(city_data.columns)
 #    print(crime_data.columns)
-        
-        
+
+
+    #
+    # Analyze crimes within a radius of each city feature
+    #
+
+    # Sum nearby crime types for each city feature type
+    # e.g. Total number of 'thefts of bicyles' near 'school'
+    observed = []
+    for crime_type in globvars.USABLE_CRIMES:
+        crime_type_counts = city_data.groupby('TYPE')[crime_type + '_nearby_count'].sum()
+        observed.append(list(crime_type_counts.values))
+#        print(crime_type_counts)
+
+    # Contingency table test
+    observed = np.array(observed)
+    chi2_res, p, dof, expected = chi2_contingency(observed)
+    print(chi2_res)
+    print(p)
+
+    print(observed)
+    print(np.around(expected))
+    print(np.around(observed - expected))
+
+
 if __name__ == "__main__":
     main()
