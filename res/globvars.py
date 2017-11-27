@@ -15,3 +15,4 @@ USABLE_CRIMES = [
     'Other Theft',
     'Theft of Bicycle'
 ]
+STANLEY_PARK_Y = 5460250

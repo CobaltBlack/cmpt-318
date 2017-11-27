@@ -187,7 +187,6 @@ ParkID,Name,Official,StreetNumber,StreetName,EWStreet,NSStreet,GoogleMapDest,Hec
 202,Morton Park,1,1800,Morton Avenue,Morton Avenue,Denman Street,"49.287680,-123.141955",0.22,West End,http://vancouver.ca/community_profiles/http://vancouver.ca/news-calendar/west-end.aspx/index.htm,N,N,N,N
 203,Nelson Park,1,1030,Bute Street,Nelson Street,Bute Street,"49.282855,-123.129558",1.16,West End,http://vancouver.ca/community_profiles/http://vancouver.ca/news-calendar/west-end.aspx/index.htm,N,Y,N,N
 204,Rosemont Park,0,3101,Rosemont Drive,Rosemont Drive,Kerr Street,"49.215746,-123.040816",1.36,Killarney,http://vancouver.ca/community_profiles/http://vancouver.ca/news-calendar/killarney.aspx/index.htm,N,N,N,N
-206,Stanley Park,1,2000,W Georgia Street,W Georgia Street,Chilco Street,"49.302701,-123.144307",400.00,West End,http://vancouver.ca/community_profiles/http://vancouver.ca/news-calendar/west-end.aspx/index.htm,N,Y,Y,Y
 207,Sunset Beach Park,1,1204,Beach Avenue,Beach Avenue,Bute Street,"49.281211,-123.139681",3.61,West End,http://vancouver.ca/community_profiles/http://vancouver.ca/news-calendar/west-end.aspx/index.htm,N,Y,Y,Y
 208,Rosemary Brown Park,0,2299,Redbud Lane,W 11th Avenue,Vine Street,"49.261821,-123.157388",0.12,Kitsilano,http://vancouver.ca/community_profiles/http://vancouver.ca/news-calendar/kitsilano.aspx/index.htm,N,N,N,N
 209,Langara Park,0,200,W 49th Avenue,W 49th Avenue,Columbia Street,"49.225093,-123.111506",1.21,Oakridge,http://vancouver.ca/community_profiles/http://vancouver.ca/news-calendar/oakridge.aspx/index.htm,N,N,N,N

@@ -30,6 +30,7 @@ class DataCleaner:
             city_data = city_data.append(DataCleaner.CleanHomelessSheltersData(), ignore_index=True)
             city_data = city_data.append(DataCleaner.CleanSchoolsData(), ignore_index=True)
             city_data = city_data.dropna(axis=0)
+            city_data = city_data[city_data['Y'] < globvars.STANLEY_PARK_Y]
             city_data.to_csv(CITY_FILE, index=False)
 
         return CRIME_FILE, CITY_FILE
@@ -45,6 +46,8 @@ class DataCleaner:
         #   protect their identity, which means we can't use the data
         crimes = crimes[(crimes.X != 0.0) | (crimes.Y != 0.0)]
         crimes = crimes[crimes['TYPE'].isin(globvars.USABLE_CRIMES)]
+        # Remove Stanley Park Data
+        crimes = crimes[crimes['Y'] < globvars.STANLEY_PARK_Y]
 
         crimes.to_csv(CRIME_FILE, index=False)
 

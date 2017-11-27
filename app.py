@@ -78,7 +78,24 @@ def main():
         print (e)
         sys.exit(1)
         
-        
+     # Do the analysis...
+#    crime_data = crime_data[crime_data['Y'] < 5460250]
+    crime_data['color'] = crime_data['TYPE'].apply(lambda x: color_map[x])
+    plt.figure(figsize=(50,50))
+    plt.scatter(crime_data['X'], crime_data['Y'], c=crime_data['color'],  s=5)
+#    plt.show()
+    plt.savefig('crime.jpg')
+    
+#    city_data = city_data[city_data['TYPE'] != 'GRAFFITI']
+    city_data['color'] = city_data['TYPE'].apply(lambda x: city_color_map[x])
+    plt.figure(figsize=(20,20))
+    plt.scatter(city_data['X'], city_data['Y'], c=city_data['color'],  s=1)
+#    plt.show()
+    plt.savefig('city.jpg')
+    
+    return  
+    
+    
     CrimeDistanceFeatureType(crime_data, city_data)
 
     crime_kd = KDTree(crime_data[['X', 'Y']])
