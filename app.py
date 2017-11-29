@@ -47,6 +47,8 @@ def PlotData(crime_data, city_data):
     plt.savefig('city.jpg')
 
 
+# Performs a Tukey Pairwise test on the distances of each type of crime to a
+#  given city feature
 def FeatureDistanceHelper(crime_data, crimes, feature, alpha = 0.05):
     df = crime_data.loc[crime_data['TYPE'].isin(crimes)]
     posthoc = pairwise_tukeyhsd(df['nearest_'+feature], df['TYPE'], alpha=alpha)
@@ -55,25 +57,20 @@ def FeatureDistanceHelper(crime_data, crimes, feature, alpha = 0.05):
 # Find the average distance to each type of city feature from each type of crime
 #   Given all crimes, find the distance to the nearest of each type of feature
 def CrimeDistanceFeatureType(crime_data, city_data):
-    city_features = city_data.groupby('TYPE')
-    # Collect the distances to the nearest city feature of each type per crime
-    for name, group in city_features:
-        feature_kd = KDTree(group[['X', 'Y']])
-        dist, ind = feature_kd.query(crime_data[['X', 'Y']].values, k=1)
-        crime_data['nearest_' + name] = pd.Series(item[0] for item in dist)
-    
-    # Aggregate the distances for each type of crime
-    #crime_types = crime_data.groupby('TYPE')
-    
+    # We are doing a test for each city feature type, adjust for this in 
+    #  the statistical analysis
     alpha = 0.05 / 7
     
+    # For each city feature, determine which crimes are closer
+    # Note that we have limited the crimes to compare in order to increase 
+    #  robustness to error and ignore data we don't really care about
     print('CITY PROJECT TUKEY:')
     FeatureDistanceHelper(crime_data, ['Mischief',
                                       'Break and Enter Residential/Other',
                                        'Break and Enter Commercial',
                                       'Other Theft'], 
                           'CITYPROJECT', alpha)
-    
+
     print('RTS TUKEY:')
     FeatureDistanceHelper(crime_data, ['Mischief',
                                       'Break and Enter Residential/Other',
@@ -82,7 +79,7 @@ def CrimeDistanceFeatureType(crime_data, city_data):
                                       'Theft of Vehicle',
                                       'Theft of Bicycle'], 
                           'RTS', alpha)
-    
+
     print('PARK TUKEY:')
     FeatureDistanceHelper(crime_data, globvars.USABLE_CRIMES, 'PARK', alpha)
     
@@ -114,16 +111,16 @@ def CrimeDistanceFeatureType(crime_data, city_data):
                                       'Theft of Vehicle',
                                       'Theft from Vehicle'], 
                           'GARDEN', alpha)
-    
-def ChiTests(crime_data, city_data):
-     # Analyze crimes within a radius of each city feature
-    #
 
+
+# Analyze crimes within a radius of each city feature
+def ChiTests(crime_data, city_data):
+    #
     # Sum nearby crime types for each city feature type
     # e.g. Total number of 'thefts of bicyles' near 'school'
     observed = []
     for crime_type in globvars.USABLE_CRIMES:
-        crime_type_counts = city_data.groupby('TYPE')[crime_type + '_nearby_count'].sum()
+        crime_type_counts = city_data.groupby('TYPE')['nearby_count_' + crime_type].sum()
         observed.append(list(crime_type_counts.values))
 #        print(crime_type_counts)
 
@@ -136,7 +133,51 @@ def ChiTests(crime_data, city_data):
 
     print('Percentage of deviation from expected independent values:')
     print(np.around((observed - expected)/expected*100))
+
+
+def CalculateDistances(crime_data, city_data):
+    # Get the k nearest crimes per city feature
+    crime_kd = KDTree(crime_data[['X', 'Y']])
+    dist, ind = crime_kd.query(city_data[['X','Y']].values, k=50)
+    city_data['nearest_crimes_ind'] = pd.Series(list(ind))
+    city_data['nearest_crimes_dist'] = pd.Series(list(dist))
     
+    # Get the k nearest city fetures per crime
+    city_kd = KDTree(city_data[['X', 'Y']])
+    dist, ind = city_kd.query(crime_data[['X','Y']].values, k=5)
+    crime_data['nearest_city_ind'] = pd.Series(list(ind))
+    crime_data['nearest_city_dist'] = pd.Series(list(dist))
+    
+    city_features = city_data.groupby('TYPE')
+    for name, group in city_features:
+        # Collect the distances to each of the nearest city feature per crime
+        feature_kd = KDTree(group[['X', 'Y']])
+        dist, ind = feature_kd.query(crime_data[['X', 'Y']].values, k=1)
+        crime_data['nearest_' + name] = pd.Series(item[0] for item in dist)  
+        # Collect the number of nearby city features to each crime
+        #  Use a predefined radius to determine what is "nearby"
+        counts = feature_kd.query_radius(crime_data[['X','Y']].values, 
+                                         globvars.LOCALITY_RADIUS, 
+                                         count_only=True)
+        crime_data['nearby_count_' + name] = pd.Series(list(counts))
+    
+    for crime_type in globvars.USABLE_CRIMES:
+        # Get average distance to crime of each type
+        curr_crime_data = crime_data[crime_data['TYPE'] == crime_type]
+        curr_crime_kd = KDTree(curr_crime_data[['X', 'Y']])
+        dist, ind = curr_crime_kd.query(city_data[['X','Y']].values, k=3)
+
+        city_data['nearest_ind_' + crime_type] = pd.Series(list(ind))
+        city_data['nearest_dist_' + crime_type] = pd.Series(list(dist))
+
+        # Find the average distance to crimes per city feature type
+        city_data['avg_dist_' + crime_type] = \
+             city_data['nearest_dist_' + crime_type].apply(lambda x: sum(x)/len(x))
+
+        # Get number of crimes within a radius
+        counts = curr_crime_kd.query_radius(city_data[['X','Y']].values, globvars.LOCALITY_RADIUS, count_only=True)
+        city_data['nearby_count_' + crime_type] = pd.Series(list(counts))
+
 
 def main():
     CRIME_FILE, CITY_FILE = DataCleaner.CleanRawData()
@@ -146,52 +187,20 @@ def main():
     except Exception as e:
         print (e)
         sys.exit(1)
+
+    CalculateDistances(crime_data, city_data)
     
     CrimeDistanceFeatureType(crime_data, city_data)
     
-    return
-
-    crime_kd = KDTree(crime_data[['X', 'Y']])
-    dist, ind = crime_kd.query(city_data[['X','Y']].values, k=50)
-    # Ignore crimes that are too far away from the feature??
-    city_data['crimes_ind'] = pd.Series(list(ind))
-    city_data['crimes_dist'] = pd.Series(list(dist))
-    
-    # Find the avergae distance to crimes per city feature type
-    city_data['avg_dist'] = city_data['crimes_dist'].apply(lambda x: sum(x)/len(x))
-    mean_dist = city_data.groupby('TYPE').avg_dist.mean()
-        
-    # Get average distance to crime of each type
+    # For each crime type, find the average distance from each city feature type
     for crime_type in globvars.USABLE_CRIMES:
-        curr_crime_data = crime_data[crime_data['TYPE'] == crime_type]
-        curr_crime_kd = KDTree(curr_crime_data[['X', 'Y']])
-        dist, ind = curr_crime_kd.query(city_data[['X','Y']].values, k=3)
-        
-        # Ignore crimes that are too far away from the feature
-        city_data[crime_type + '_ind'] = pd.Series(list(ind))
-        city_data[crime_type + '_dist'] = pd.Series(list(dist))
+        mean_dist = city_data.groupby('TYPE')['avg_dist_' + crime_type].mean()
+        print("\n\nAverage distances for crime:", crime_type)
+        print(mean_dist)
 
-        # Find the average distance to crimes per city feature type
-        city_data[crime_type + '_avg_dist'] = city_data[crime_type + '_dist'].apply(lambda x: sum(x)/len(x))
-        
-        mean_dist = city_data.groupby('TYPE')[crime_type + '_avg_dist'].mean()
-#        print("\n\navg dist for crime", crime_type)
-#        print(mean_dist)
-
-        # Get number of crimes within a radius
-        counts = curr_crime_kd.query_radius(city_data[['X','Y']].values, globvars.LOCALITY_RADIUS, count_only=True)
-        city_data[crime_type + '_nearby_count'] = pd.Series(list(counts))
-
-
-    # For each crime, get closest city features
-    city_kd = KDTree(city_data[['X', 'Y']])
-    dist, ind = city_kd.query(crime_data[['X','Y']].values, k=5)
-    crime_data['city_ind'] = pd.Series(list(ind))
-    crime_data['city_dist'] = pd.Series(list(dist))
-    
     # Find the average distance to crimes per city feature type
-    crime_data['avg_dist'] = crime_data['city_dist'].apply(lambda x: sum(x)/len(x))
-    mean_dist_crime = crime_data.groupby('TYPE').avg_dist.mean()
+#    crime_data['avg_dist'] = crime_data['city_dist'].apply(lambda x: sum(x)/len(x))
+#    mean_dist_crime = crime_data.groupby('TYPE').avg_dist.mean()
 
 #    print(mean_dist_crime)
 #    print(city_data.columns)
