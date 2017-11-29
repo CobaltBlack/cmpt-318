@@ -15,6 +15,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KDTree
 from sklearn.svm import SVC
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import FunctionTransformer
 from scipy.stats import *
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
 
@@ -139,36 +141,46 @@ def ChiTests(crime_data, city_data):
     print(np.around((observed - expected)/expected*100))
 
 
+# Convert the count of city features into a binary value of 0 or 1
+#  0 means there is no city feature nearby, 1 means there is at least 1
+# This will allow for easier testing
+def BinarizeCounts(data):
+    def f(x): 
+        return min(1, x)
+    binarize = np.vectorize(f)
+    return binarize(data)
+
+
 def ClassifyCrimeTypes(crime_data, city_data):
     
     # Split crime data into feature and class
     nearby_count_columns = list(map(lambda x: 'nearby_count_' + x, globvars.CITY_FEATURE_TYPES))
-    X = crime_data[nearby_count_columns].values
-    y = crime_data['TYPE'].values
-        
+    X = crime_data[nearby_count_columns]
+    y = crime_data['TYPE']
+    X_train, X_test, y_train, y_test = train_test_split(X, y)
+    
     #
     # Train a Naive Bayes classifier to 
     # guess crime type based on nearby features
     #
+    bayes_model = make_pipeline(FunctionTransformer(BinarizeCounts), 
+                                    GaussianNB())
+    bayes_model.fit(X_train, y_train)
     
-    # Instead of using count of each feature, change it to binary 
-    # (easier to use for naive bayes)
-#    X_binary = list(map(lambda x: min(1, x), X))
-#    X_binary_train, X_binary_test, y_train, y_test = train_test_split(X_binary, y)
-#    
-#    bayes_model = GaussianNB()
-#    bayes_model.fit(X_binary_train, y_train)
-#    
-#    # Report accuracy
-#    bayes_model.score(X_binary_test, y_test)
-#    
+    # Report accuracy
+    print(bayes_model.score(X_test, y_test))
+    print(bayes_model.predict_proba([0,1,0,0,0,0,0]))
+    
     #
     # Train a SVM to classify crime type based on number of nearby features
     #
-    X_train, X_test, y_train, y_test = train_test_split(X, y)
-    svm_model = SVC()
+    svm_model = SVC(probability=True)
+    print('######################\n' + \
+          '# BEGIN TRAINING SVM #\n' + \
+          '######################')
     svm_model.fit(X_train, y_train)
-    print(svm_model.score(X_test, y_test))
+    print('SVM Model Score: {}'.format(svm_model.score(X_test, y_test)))
+    print(svm_model.predict_proba([0,1,0,0,0,0,0]).reshape(1, -1))
 
 
 def CalculateDistances(crime_data, city_data):
@@ -227,19 +239,25 @@ def main():
 
     CalculateDistances(crime_data, city_data)
     
-    CrimeDistanceFeatureType(crime_data, city_data)
+    crime_counts = crime_data.groupby('TYPE')
+    print('Number of crimes:')
+    for name, group in crime_counts:
+         print('\t{}: {} ({}%)'.format(name, group.X.count(), \
+                           round(group.X.count() / crime_data.X.count() * 100,2)))
+    
+#    CrimeDistanceFeatureType(crime_data, city_data)
     
     # For each crime type, find the average distance from each city feature type
-    for crime_type in globvars.USABLE_CRIMES:
-        mean_dist = city_data.groupby('TYPE')['avg_dist_' + crime_type].mean()
-        print("\n\nAverage distances for crime:", crime_type)
-        print(mean_dist)
+#    for crime_type in globvars.USABLE_CRIMES:
+#        mean_dist = city_data.groupby('TYPE')['avg_dist_' + crime_type].mean()
+#        print("\n\nAverage distances for crime:", crime_type)
+#        print(mean_dist)
 
     # Chi1 Contingency test for types of crimes happening nearby a city feature
-    ChiTests(crime_data, city_data)
+#    ChiTests(crime_data, city_data)
    
     # Try classifying crime types based on nearby city features
-    ClassifyCrimeTypes(crime_data, city_data)
+#    ClassifyCrimeTypes(crime_data, city_data)
 
 
 if __name__ == "__main__":
