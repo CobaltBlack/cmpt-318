@@ -11,9 +11,13 @@ import sys
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KDTree
+from sklearn.svm import SVC
 from scipy.stats import *
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
+
 
 color_map = {
     'Mischief': 'b',
@@ -135,6 +139,38 @@ def ChiTests(crime_data, city_data):
     print(np.around((observed - expected)/expected*100))
 
 
+def ClassifyCrimeTypes(crime_data, city_data):
+    
+    # Split crime data into feature and class
+    nearby_count_columns = list(map(lambda x: 'nearby_count_' + x, globvars.CITY_FEATURE_TYPES))
+    X = crime_data[nearby_count_columns].values
+    y = crime_data['TYPE'].values
+        
+    #
+    # Train a Naive Bayes classifier to 
+    # guess crime type based on nearby features
+    #
+    
+    # Instead of using count of each feature, change it to binary 
+    # (easier to use for naive bayes)
+#    X_binary = list(map(lambda x: min(1, x), X))
+#    X_binary_train, X_binary_test, y_train, y_test = train_test_split(X_binary, y)
+#    
+#    bayes_model = GaussianNB()
+#    bayes_model.fit(X_binary_train, y_train)
+#    
+#    # Report accuracy
+#    bayes_model.score(X_binary_test, y_test)
+#    
+    #
+    # Train a SVM to classify crime type based on number of nearby features
+    #
+    X_train, X_test, y_train, y_test = train_test_split(X, y)
+    svm_model = SVC()
+    svm_model.fit(X_train, y_train)
+    print(svm_model.score(X_test, y_test))
+
+
 def CalculateDistances(crime_data, city_data):
     # Get the k nearest crimes per city feature
     crime_kd = KDTree(crime_data[['X', 'Y']])
@@ -147,6 +183,7 @@ def CalculateDistances(crime_data, city_data):
     dist, ind = city_kd.query(crime_data[['X','Y']].values, k=5)
     crime_data['nearest_city_ind'] = pd.Series(list(ind))
     crime_data['nearest_city_dist'] = pd.Series(list(dist))
+    # Find the average distance to crimes per city feature type
     
     city_features = city_data.groupby('TYPE')
     for name, group in city_features:
@@ -198,16 +235,11 @@ def main():
         print("\n\nAverage distances for crime:", crime_type)
         print(mean_dist)
 
-    # Find the average distance to crimes per city feature type
-#    crime_data['avg_dist'] = crime_data['city_dist'].apply(lambda x: sum(x)/len(x))
-#    mean_dist_crime = crime_data.groupby('TYPE').avg_dist.mean()
-
-#    print(mean_dist_crime)
-#    print(city_data.columns)
-#    print(crime_data.columns)
-
+    # Chi1 Contingency test for types of crimes happening nearby a city feature
     ChiTests(crime_data, city_data)
    
+    # Try classifying crime types based on nearby city features
+    ClassifyCrimeTypes(crime_data, city_data)
 
 
 if __name__ == "__main__":
