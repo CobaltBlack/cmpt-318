@@ -7,6 +7,7 @@ Copyright (c) 2017 Joshua McManus, Eric Liu
 from CleanRawData import DataCleaner
 import res.globvars as globvars
 
+import os
 import sys
 import numpy as np
 import pandas as pd
@@ -17,6 +18,7 @@ from sklearn.neighbors import KDTree
 from sklearn.svm import SVC
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import FunctionTransformer
+from sklearn.externals import joblib
 from scipy.stats import *
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
 
@@ -148,7 +150,8 @@ def BinarizeCounts(data):
     def f(x): 
         return min(1, x)
     binarize = np.vectorize(f)
-    return binarize(data)
+    output = binarize(data)
+    return output
 
 
 def ClassifyCrimeTypes(crime_data, city_data):
@@ -168,19 +171,24 @@ def ClassifyCrimeTypes(crime_data, city_data):
     bayes_model.fit(X_train, y_train)
     
     # Report accuracy
-    print(bayes_model.score(X_test, y_test))
-    print(bayes_model.predict_proba([0,1,0,0,0,0,0]))
+    print('Bayes Model Score: {}'.format(bayes_model.score(X_test, y_test)))
+    print(bayes_model.predict_proba([[0,1,0,0,0,0,0]]))
     
-    #
     # Train a SVM to classify crime type based on number of nearby features
-    #
-    svm_model = SVC(probability=True)
-    print('######################\n' + \
-          '# BEGIN TRAINING SVM #\n' + \
-          '######################')
-    svm_model.fit(X_train, y_train)
+    # Cache it to avoid long training times
+    if os.path.isfile(globvars.SVM_PICKLE):
+        svm_model = joblib.load(globvars.SVM_PICKLE)
+    else:
+        svm_model = make_pipeline(FunctionTransformer(BinarizeCounts),
+                              SVC(probability=True))
+        print('######################\n' + \
+              '# BEGIN TRAINING SVM #\n' + \
+              '######################')
+        svm_model.fit(X_train, y_train)
+        joblib.dump(svm_model, globvars.SVM_PICKLE)
+    
     print('SVM Model Score: {}'.format(svm_model.score(X_test, y_test)))
-    print(svm_model.predict_proba([0,1,0,0,0,0,0]).reshape(1, -1))
+    print(svm_model.predict_proba([[0,1,0,0,0,0,0]]))
 
 
 def CalculateDistances(crime_data, city_data):
@@ -239,11 +247,11 @@ def main():
 
     CalculateDistances(crime_data, city_data)
     
-    crime_counts = crime_data.groupby('TYPE')
-    print('Number of crimes:')
-    for name, group in crime_counts:
-         print('\t{}: {} ({}%)'.format(name, group.X.count(), \
-                           round(group.X.count() / crime_data.X.count() * 100,2)))
+#    crime_counts = crime_data.groupby('TYPE')
+#    print('Number of crimes:')
+#    for name, group in crime_counts:
+#         print('\t{}: {} ({}%)'.format(name, group.X.count(), \
+#                           round(group.X.count() / crime_data.X.count() * 100,2)))
     
 #    CrimeDistanceFeatureType(crime_data, city_data)
     
@@ -257,7 +265,7 @@ def main():
 #    ChiTests(crime_data, city_data)
    
     # Try classifying crime types based on nearby city features
-#    ClassifyCrimeTypes(crime_data, city_data)
+    ClassifyCrimeTypes(crime_data, city_data)
 
 
 if __name__ == "__main__":

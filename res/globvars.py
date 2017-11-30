@@ -6,6 +6,7 @@ Copyright (c) 2017 Joshua McManus, Eric Liu
 
 RESOURCE_FILES_PATH = "./res/files/"
 RAW_DATA_FILEPATH = "./res/raw_data/"
+SVM_PICKLE = "./res/crime_svm.pkl"
 USABLE_CRIMES = [
     'Mischief',
     'Theft from Vehicle' ,
