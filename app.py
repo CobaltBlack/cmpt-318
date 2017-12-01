@@ -153,6 +153,22 @@ def BinarizeCounts(data):
     output = binarize(data)
     return output
 
+# Print the probabiity of each type of crime occurring near an area with a given
+#  set of city featuers nearby
+def PredictNearbyCrimes(nearby_city_features, model):
+    results = model.predict_proba(nearby_city_features)
+    classes = model.classes_
+    for i in range(0, len(nearby_city_features)):
+        test = nearby_city_features[i]
+        assert(len(test) == len(globvars.CITY_FEATURE_TYPES))
+        print('\nCrimes that will occur near ')
+        for j in range(0,len(test)-1):
+            print('{} {}, '.format(test[j], globvars.CITY_FEATURE_TYPES[j]), end='')
+        print('{} {}:'.format(test[len(test)-1], globvars.CITY_FEATURE_TYPES[len(test)-1]))
+        result = results[i]
+        for j in range(0, len(result)):
+            print('{}: {} %'.format(classes[j], round(result[j]*100, 2)))
+
 
 def ClassifyCrimeTypes(crime_data, city_data):
     
@@ -172,15 +188,13 @@ def ClassifyCrimeTypes(crime_data, city_data):
     
     # Report accuracy
     print('Bayes Model Score: {}'.format(bayes_model.score(X_test, y_test)))
-    print(bayes_model.predict_proba([[0,1,0,0,0,0,0]]))
     
     # Train a SVM to classify crime type based on number of nearby features
     # Cache it to avoid long training times
     if os.path.isfile(globvars.SVM_PICKLE):
         svm_model = joblib.load(globvars.SVM_PICKLE)
     else:
-        svm_model = make_pipeline(FunctionTransformer(BinarizeCounts),
-                              SVC(probability=True))
+        svm_model = make_pipeline(SVC(probability=True))
         print('######################\n' + \
               '# BEGIN TRAINING SVM #\n' + \
               '######################')
@@ -188,7 +202,7 @@ def ClassifyCrimeTypes(crime_data, city_data):
         joblib.dump(svm_model, globvars.SVM_PICKLE)
     
     print('SVM Model Score: {}'.format(svm_model.score(X_test, y_test)))
-    print(svm_model.predict_proba([[0,1,0,0,0,0,0]]))
+    print(PredictNearbyCrimes([[1,0,0,0,0,0,0]], svm_model))
 
 
 def CalculateDistances(crime_data, city_data):
