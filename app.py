@@ -165,9 +165,10 @@ def PredictNearbyCrimes(nearby_city_features, model):
         for j in range(0,len(test)-1):
             print('{} {}, '.format(test[j], globvars.CITY_FEATURE_TYPES[j]), end='')
         print('{} {}:'.format(test[len(test)-1], globvars.CITY_FEATURE_TYPES[len(test)-1]))
-        result = results[i]
-        for j in range(0, len(result)):
-            print('{}: {} %'.format(classes[j], round(result[j]*100, 2)))
+        result = pd.DataFrame(data={'Crime': classes, 
+                                    'Liklihood': results[i]*100})
+        result['Liklihood'] = result['Liklihood'].apply(round, args=[2])
+        print(result.sort_values('Liklihood', ascending=False))
 
 
 def ClassifyCrimeTypes(crime_data, city_data):
