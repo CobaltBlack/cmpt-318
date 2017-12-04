@@ -59,22 +59,31 @@ def PlotData(crime_data, city_data):
 #  given city feature
 def FeatureDistanceHelper(crime_data, crimes, feature, alpha = 0.05):
     df = crime_data.loc[crime_data['TYPE'].isin(crimes)]
+    groups = df.groupby('TYPE')
+    for crime in crimes:
+        plt.hist(np.sqrt(groups.get_group(crime)['nearest_'+feature]), 
+                 alpha=0.5,
+                 label=crime)
+    plt.legend(loc=1)
+    plt.show()
+    # Run Levene test on each crime distance distribution
+    # https://stackoverflow.com/questions/26202930/pandas-how-to-apply-scipy-stats-test-on-a-groupby-object
+    values_per_group = [np.sqrt(col) for col_name, col in groups['nearest_'+feature]]
+    print('P-value for Levene test:', levene(*values_per_group).pvalue)
     posthoc = pairwise_tukeyhsd(df['nearest_'+feature], df['TYPE'], alpha=alpha)
     print(posthoc)
 
-# Find the average distance to each type of city feature from each type of crime
-#   Given all crimes, find the distance to the nearest of each type of feature
-def CrimeDistanceFeatureType(crime_data, city_data):
+# Determine if the mean distance to each city feature from each type of crime varies
+def DistanceToCityFeatureTukey(crime_data, city_data):
     # We are doing a test for each city feature type, adjust for this in 
     #  the statistical analysis
-    alpha = 0.05 / 7
+    alpha = 0.05 / 5
     
     # For each city feature, determine which crimes are closer
     # Note that we have limited the crimes to compare in order to increase 
     #  robustness to error and ignore data we don't really care about
     print('RTS TUKEY:')
-    FeatureDistanceHelper(crime_data, ['Mischief',
-                                      'Break and Enter Residential/Other',
+    FeatureDistanceHelper(crime_data, ['Break and Enter Residential/Other',
                                        'Break and Enter Commercial',
                                       'Other Theft',
                                       'Theft of Vehicle',
@@ -282,13 +291,13 @@ def main():
 
     CalculateDistances(crime_data, city_data)
     
-#    crime_counts = crime_data.groupby('TYPE')
-#    print('Number of crimes:')
-#    for name, group in crime_counts:
-#         print('\t{}: {} ({}%)'.format(name, group.X.count(), \
-#                           round(group.X.count() / crime_data.X.count() * 100,2)))
+    crime_counts = crime_data.groupby('TYPE')
+    print('Number of crimes:')
+    for name, group in crime_counts:
+         print('\t{}: {} ({}%)'.format(name, group.X.count(), \
+                           round(group.X.count() / crime_data.X.count() * 100,2)))
     
-#    CrimeDistanceFeatureType(crime_data, city_data)
+#    DistanceToCityFeatureTukey(crime_data, city_data)
     
     # For each crime type, find the average distance from each city feature type
 #    for crime_type in globvars.USABLE_CRIMES:
