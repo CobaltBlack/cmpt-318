@@ -45,13 +45,13 @@ city_color_map = {
 
 def PlotData(crime_data, city_data):
     crime_data['color'] = crime_data['TYPE'].apply(lambda x: color_map[x])
-    plt.figure(figsize=(25,25))
-    plt.scatter(crime_data['X'], crime_data['Y'], c='blue',  s=1)
+    plt.figure(figsize=(10,10))
+    plt.scatter(crime_data['X'], crime_data['Y'], c=crime_data['color'],  s=1)
     plt.savefig('crime.jpg')
     
     city_data['color'] = city_data['TYPE'].apply(lambda x: city_color_map[x])
-    plt.figure(figsize=(25,25))
-    plt.scatter(city_data['X'], city_data['Y'], c='blue',  s=1)
+    plt.figure(figsize=(10,10))
+    plt.scatter(city_data['X'], city_data['Y'], c=city_data['color'],  s=1)
     plt.savefig('city.jpg')
 
 
