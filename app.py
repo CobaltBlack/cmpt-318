@@ -72,13 +72,6 @@ def CrimeDistanceFeatureType(crime_data, city_data):
     # For each city feature, determine which crimes are closer
     # Note that we have limited the crimes to compare in order to increase 
     #  robustness to error and ignore data we don't really care about
-    print('CITY PROJECT TUKEY:')
-    FeatureDistanceHelper(crime_data, ['Mischief',
-                                      'Break and Enter Residential/Other',
-                                       'Break and Enter Commercial',
-                                      'Other Theft'], 
-                          'CITYPROJECT', alpha)
-
     print('RTS TUKEY:')
     FeatureDistanceHelper(crime_data, ['Mischief',
                                       'Break and Enter Residential/Other',
@@ -87,9 +80,6 @@ def CrimeDistanceFeatureType(crime_data, city_data):
                                       'Theft of Vehicle',
                                       'Theft of Bicycle'], 
                           'RTS', alpha)
-
-    print('PARK TUKEY:')
-    FeatureDistanceHelper(crime_data, globvars.USABLE_CRIMES, 'PARK', alpha)
     
     print('COMMUNITY CENTER TUKEY:')
     FeatureDistanceHelper(crime_data, ['Mischief',
@@ -155,26 +145,33 @@ def BinarizeCounts(data):
 
 # Print the probabiity of each type of crime occurring near an area with a given
 #  set of city featuers nearby
-def PredictNearbyCrimes(nearby_city_features, model):
+def PredictNearbyCrimes(nearby_city_features, model, nearby_count_columns):
     results = model.predict_proba(nearby_city_features)
     classes = model.classes_
-    for i in range(0, len(nearby_city_features)):
-        test = nearby_city_features[i]
-        assert(len(test) == len(globvars.CITY_FEATURE_TYPES))
-        print('\nCrimes that will occur near ')
-        for j in range(0,len(test)-1):
-            print('{} {}, '.format(test[j], globvars.CITY_FEATURE_TYPES[j]), end='')
-        print('{} {}:'.format(test[len(test)-1], globvars.CITY_FEATURE_TYPES[len(test)-1]))
-        result = pd.DataFrame(data={'Crime': classes, 
+    # For each test passed in nearby_city_features, print out the results
+    for i in range(len(results)):
+        city_features = nearby_city_features[i]
+        # Print the city features we want to find the crimes for
+        print('Crimes that will occur near ')
+        for j in range(len(city_features)):
+            print('{} {}'.format(city_features[j], 
+                  nearby_count_columns[j].replace('nearby_count_', "")), end='')
+            if (j != len(city_features) - 1):
+                print(', ', end="")
+            else:
+                print(':')
+
+        result_df = pd.DataFrame(data={'Crime': classes, 
                                     'Liklihood': results[i]*100})
-        result['Liklihood'] = result['Liklihood'].apply(round, args=[2])
-        print(result.sort_values('Liklihood', ascending=False))
+        result_df['Liklihood'] = result_df['Liklihood'].apply(round, args=[2])
+        print(result_df.sort_values('Liklihood', ascending=False))
 
 
 def ClassifyCrimeTypes(crime_data, city_data):
-    
     # Split crime data into feature and class
     nearby_count_columns = list(map(lambda x: 'nearby_count_' + x, globvars.CITY_FEATURE_TYPES))
+    nearby_count_columns.remove('nearby_count_PARK')
+    nearby_count_columns.remove('nearby_count_CITYPROJECT')
     X = crime_data[nearby_count_columns]
     y = crime_data['TYPE']
     X_train, X_test, y_train, y_test = train_test_split(X, y)
@@ -188,8 +185,8 @@ def ClassifyCrimeTypes(crime_data, city_data):
     bayes_model.fit(X_train, y_train)
     
     # Report accuracy
-    print('Bayes Model Score: {}'.format(bayes_model.score(X_test, y_test)))
-    
+    print('\nBayes Model Score: {}'.format(bayes_model.score(X_test, y_test)))
+    PredictNearbyCrimes([[0,0,0,0,1]], bayes_model, nearby_count_columns)
     # Train a SVM to classify crime type based on number of nearby features
     # Cache it to avoid long training times
     if os.path.isfile(globvars.SVM_PICKLE):
@@ -202,8 +199,8 @@ def ClassifyCrimeTypes(crime_data, city_data):
         svm_model.fit(X_train, y_train)
         joblib.dump(svm_model, globvars.SVM_PICKLE)
     
-    print('SVM Model Score: {}'.format(svm_model.score(X_test, y_test)))
-    print(PredictNearbyCrimes([[1,0,0,0,0,0,0]], svm_model))
+    print('\nSVM Model Score: {}'.format(svm_model.score(X_test, y_test)))
+    PredictNearbyCrimes([[0,0,0,0,1]], svm_model, nearby_count_columns)
 
 
 def CalculateDistances(crime_data, city_data):
