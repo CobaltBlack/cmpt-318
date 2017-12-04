@@ -145,7 +145,7 @@ def BinarizeCounts(data):
 
 # Print the probabiity of each type of crime occurring near an area with a given
 #  set of city featuers nearby
-def PredictNearbyCrimes(nearby_city_features, model, nearby_count_columns):
+def PredictNearbyCrimes(nearby_city_features, model, nearby_count_columns, crime_precentages=None):
     results = model.predict_proba(nearby_city_features)
     classes = model.classes_
     # For each test passed in nearby_city_features, print out the results
@@ -162,9 +162,15 @@ def PredictNearbyCrimes(nearby_city_features, model, nearby_count_columns):
                 print(':')
 
         result_df = pd.DataFrame(data={'Crime': classes, 
-                                    'Liklihood': results[i]*100})
-        result_df['Liklihood'] = result_df['Liklihood'].apply(round, args=[2])
-        print(result_df.sort_values('Liklihood', ascending=False))
+                                    'Likelihood': results[i]*100})
+        result_df['Likelihood'] = result_df['Likelihood'].apply(round, args=[2])
+        
+        if crime_precentages != None:
+            result_df['Relative Likelihood'] = result_df.apply(
+                lambda x: (x['Likelihood'] - crime_precentages[x['Crime']] ) / crime_precentages[x['Crime']] * 100
+            , axis=1)
+        
+        print(result_df.sort_values('Likelihood', ascending=False))
 
 
 def ClassifyCrimeTypes(crime_data, city_data):
@@ -186,7 +192,6 @@ def ClassifyCrimeTypes(crime_data, city_data):
     
     # Report accuracy
     print('\nBayes Model Score: {}'.format(bayes_model.score(X_test, y_test)))
-    PredictNearbyCrimes([[0,0,0,0,1]], bayes_model, nearby_count_columns)
     # Train a SVM to classify crime type based on number of nearby features
     # Cache it to avoid long training times
     if os.path.isfile(globvars.SVM_PICKLE):
@@ -200,7 +205,25 @@ def ClassifyCrimeTypes(crime_data, city_data):
         joblib.dump(svm_model, globvars.SVM_PICKLE)
     
     print('\nSVM Model Score: {}'.format(svm_model.score(X_test, y_test)))
-    PredictNearbyCrimes([[0,0,0,0,1]], svm_model, nearby_count_columns)
+    
+    crime_precentages = {}
+    crime_counts = crime_data.groupby('TYPE')
+    for name, group in crime_counts:
+        crime_precentages[name] = round(group.X.count() / crime_data.X.count() * 100, 2)
+    
+    # Predict likelihood of crimes based on nearby city features
+    city_features_query = [
+        [1,0,0,0,0],
+        [0,1,0,0,0],
+        [0,0,1,0,0],
+        [0,0,0,1,0],
+        [0,0,0,0,1]
+    ]
+    print('\nNaive Bayes predictions:')
+    PredictNearbyCrimes(city_features_query, bayes_model, nearby_count_columns, crime_precentages=crime_precentages)
+    
+    print('\nSVM predictions:')
+    PredictNearbyCrimes(city_features_query, svm_model, nearby_count_columns, crime_precentages=crime_precentages)
 
 
 def CalculateDistances(crime_data, city_data):
