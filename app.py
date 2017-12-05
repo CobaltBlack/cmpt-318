@@ -37,13 +37,13 @@ city_color_map = {
     'RTS': 'b',
     'PARK': 'r',
     'COMMUNITYCENTER': 'y',
-    'GARDEN': 'tab:purple',
-    'HOMELESS': 'xkcd:sky blue',
+    'GARDEN': 'g',
+    'HOMELESS': 'magenta',
     'CITYPROJECT': 'c',
-    'SCHOOL': 'k'
+    'SCHOOL': 'orange'
 }
 
-def PlotData(crime_data, city_data):
+def PlotAllData(crime_data, city_data):
     crime_data['color'] = crime_data['TYPE'].apply(lambda x: color_map[x])
     plt.figure(figsize=(10,10))
     plt.scatter(crime_data['X'], crime_data['Y'], c=crime_data['color'],  s=1)
@@ -54,6 +54,20 @@ def PlotData(crime_data, city_data):
     plt.scatter(city_data['X'], city_data['Y'], c=city_data['color'],  s=1)
     plt.savefig('city.jpg')
 
+
+def PlotCrimeVsFeatures(crime_data, city_data, crimetype, features):
+    crimes = crime_data[crime_data['TYPE'] == crimetype]
+    
+    plt.figure(figsize=(15,15))
+    plt.scatter(crimes['X'], crimes['Y'], c='black', s=3, alpha=0.5, label=crimetype)
+    for feature in features:
+        to_plot = city_data[city_data['TYPE'] == feature]
+        plt.scatter(to_plot['X'], to_plot['Y'], c=city_color_map[feature], 
+                s=30, label=feature)
+    plt.legend(loc=2)
+    filename = (crimetype + '_' + '_'.join(features) + '.png').replace('/','-')
+    plt.savefig(filename)
+    
 
 # Performs a Tukey Pairwise test on the distances of each type of crime to a
 #  given city feature
@@ -141,6 +155,25 @@ def ChiTests(crime_data, city_data):
     print('Percentage of deviation from expected independent values:')
     print(np.around((observed - expected)/expected*100))
 
+
+def ChiTestOneCrimeOneFeature(crime_data, city_data, crimetype, feature):
+    observed = []
+    idx = crime_data['TYPE'] == crimetype;
+    crimes_of_type = crime_data.loc[idx]
+    near_feature = sum(crimes_of_type['nearby_count_' + feature] > 0)
+    total = len(crimes_of_type)
+    observed.append([near_feature, total-near_feature])
+    
+    crimes_not_of_type = crime_data.loc[~idx]
+    near_feature = sum(crimes_not_of_type['nearby_count_' + feature] > 0)
+    total = len(crimes_not_of_type)
+    observed.append([near_feature, total-near_feature])
+    
+    _, p, _, expected = chi2_contingency(observed)
+    print(observed)
+    print(expected)
+    print(p)
+    
 
 # Convert the count of city features into a binary value of 0 or 1
 #  0 means there is no city feature nearby, 1 means there is at least 1
@@ -286,7 +319,7 @@ def main():
         crime_data = pd.read_csv(CRIME_FILE)
         city_data = pd.read_csv(CITY_FILE)
     except Exception as e:
-        print (e)
+        print (e) 
         sys.exit(1)
 
     CalculateDistances(crime_data, city_data)
@@ -308,9 +341,18 @@ def main():
     # Chi1 Contingency test for types of crimes happening nearby a city feature
 #    ChiTests(crime_data, city_data)
    
+
+#    ChiTestOneCrimeOneFeature(crime_data, city_data, 'Other Theft', 'RTS')
     # Try classifying crime types based on nearby city features
     ClassifyCrimeTypes(crime_data, city_data)
 
+
+#    PlotCrimeVsFeatures(crime_data, city_data, 'Break and Enter Residential/Other',
+#                        ['GARDEN', 'HOMELESS', 'RTS', 'SCHOOL'])
+#    PlotCrimeVsFeatures(crime_data, city_data, 'Theft of Vehicle',
+#                        ['RTS', 'SCHOOL'])
+#    PlotCrimeVsFeatures(crime_data, city_data, 'Other Theft',
+#                        ['RTS', 'COMMUNITYCENTER'])
 
 if __name__ == "__main__":
     main()
