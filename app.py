@@ -9,9 +9,12 @@ import res.globvars as globvars
 
 import os
 import sys
+import re
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KDTree
@@ -19,11 +22,14 @@ from sklearn.svm import SVC
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import FunctionTransformer
 from sklearn.externals import joblib
-from scipy.stats import *
+
+from scipy.stats import chi2_contingency
+from scipy.stats import levene
+
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
 
 
-color_map = {
+crime_color_map = {
     'Mischief': 'b',
     'Theft from Vehicle': 'r',
     'Break and Enter Residential/Other': 'y',
@@ -32,6 +38,7 @@ color_map = {
     'Other Theft': 'xkcd:sky blue',
     'Theft of Bicycle': 'c'
 }
+
 
 city_color_map = {
     'RTS': 'b',
@@ -43,8 +50,13 @@ city_color_map = {
     'SCHOOL': 'orange'
 }
 
+#
+# Plots two 2D scatter plots of the location of the crimes and city features
+# No legend is given as the data is very dense when all put into a single graph
+# Designed as a visual aid and not for analysis purposes
+#
 def PlotAllData(crime_data, city_data):
-    crime_data['color'] = crime_data['TYPE'].apply(lambda x: color_map[x])
+    crime_data['color'] = crime_data['TYPE'].apply(lambda x: crime_color_map[x])
     plt.figure(figsize=(10,10))
     plt.scatter(crime_data['X'], crime_data['Y'], c=crime_data['color'],  s=1)
     plt.savefig('crime.jpg')
@@ -54,28 +66,46 @@ def PlotAllData(crime_data, city_data):
     plt.scatter(city_data['X'], city_data['Y'], c=city_data['color'],  s=1)
     plt.savefig('city.jpg')
 
-
+#
+# A visualizetion tool to view the distribution of city features around a crime
+# crime_data, city_data: the dataframes containing all of the data used
+# crimetype: a single type of crime to be plotted
+# features: a list of city feature types to be plotted
+#
 def PlotCrimeVsFeatures(crime_data, city_data, crimetype, features):
     crimes = crime_data[crime_data['TYPE'] == crimetype]
     
     plt.figure(figsize=(15,15))
-    plt.scatter(crimes['X'], crimes['Y'], c='black', s=3, alpha=0.5, label=crimetype)
+    # Since the crimes are much more dense, make them less visible on the graph
+    plt.scatter(crimes['X'], crimes['Y'], c='black', 
+                s=3, alpha=0.5, label=crimetype)
+    #
+    # For each feature, add all the locations on to the map, making sure to 
+    # add a label and unique color to enhance visibility
+    #
     for feature in features:
         to_plot = city_data[city_data['TYPE'] == feature]
         plt.scatter(to_plot['X'], to_plot['Y'], c=city_color_map[feature], 
                 s=30, label=feature)
     plt.legend(loc=2)
-    filename = (crimetype + '_' + '_'.join(features) + '.png').replace('/','-')
+    # Create a relevant filename so multiple images can be produced
+    filename = (crimetype + '_' + '_'.join(features) + '.png')
+    filename = re.sub('[/ ]','-', filename)
     plt.savefig(filename)
     
-
-# Performs a Tukey Pairwise test on the distances of each type of crime to a
-#  given city feature
-def FeatureDistanceHelper(crime_data, crimes, feature, alpha = 0.05):
+#
+# Performs a Tukey Pairwise test on the distances of each type
+# of crime to a given city feature
+#
+def TukeyHelper(crime_data, crimes, feature, alpha = 0.05):
     df = crime_data.loc[crime_data['TYPE'].isin(crimes)]
+    # The distance data is all right skewed as most crimes are often somewhat
+        # near city features, so we sqrt them to get normal looking data
+    df['nearest_'+feature] = np.sqrt(df['nearest_'+feature])
+    # Plot the histogram of the data to confirm that it is mostly normal
     groups = df.groupby('TYPE')
     for crime in crimes:
-        plt.hist(np.sqrt(groups.get_group(crime)['nearest_'+feature]), 
+        plt.hist(groups.get_group(crime)['nearest_'+feature], 
                  alpha=0.5,
                  label=crime)
     plt.legend(loc=1)
@@ -84,79 +114,97 @@ def FeatureDistanceHelper(crime_data, crimes, feature, alpha = 0.05):
     # https://stackoverflow.com/questions/26202930/pandas-how-to-apply-scipy-stats-test-on-a-groupby-object
     values_per_group = [np.sqrt(col) for col_name, col in groups['nearest_'+feature]]
     print('P-value for Levene test:', levene(*values_per_group).pvalue)
+    # Finally run the Tukey test, with the above data confirming / denying
+        # the test's validity
     posthoc = pairwise_tukeyhsd(df['nearest_'+feature], df['TYPE'], alpha=alpha)
     print(posthoc)
 
+
 # Determine if the mean distance to each city feature from each type of crime varies
 def DistanceToCityFeatureTukey(crime_data, city_data):
+    #
     # We are doing a test for each city feature type, adjust for this in 
-    #  the statistical analysis
+    # the statistical analysis
+    #
     alpha = 0.05 / 5
     
+    #    
     # For each city feature, determine which crimes are closer
     # Note that we have limited the crimes to compare in order to increase 
-    #  robustness to error and ignore data we don't really care about
+    # robustness to error and ignore data we don't really care about
+    #
     print('RTS TUKEY:')
-    FeatureDistanceHelper(crime_data, ['Break and Enter Residential/Other',
-                                       'Break and Enter Commercial',
-                                      'Other Theft',
-                                      'Theft of Vehicle',
-                                      'Theft of Bicycle'], 
+    TukeyHelper(crime_data, [ 'Break and Enter Residential/Other',
+                              'Break and Enter Commercial',
+                              'Other Theft',
+                              'Theft of Vehicle',
+                              'Theft of Bicycle' ], 
                           'RTS', alpha)
     
     print('COMMUNITY CENTER TUKEY:')
-    FeatureDistanceHelper(crime_data, ['Mischief',
-                                      'Break and Enter Residential/Other',
-                                      'Other Theft',
-                                      'Theft of Vehicle',
-                                      'Theft of Bicycle',
-                                      'Theft from Vehicle'], 
-                          'COMMUNITYCENTER', alpha)
+    TukeyHelper(crime_data, [ 'Mischief',
+                              'Break and Enter Residential/Other',
+                              'Other Theft',
+                              'Theft of Vehicle',
+                              'Theft of Bicycle',
+                              'Theft from Vehicle' ], 
+                'COMMUNITYCENTER', alpha)
     
     print('HOMELESS SHELTER TUKEY:')
-    FeatureDistanceHelper(crime_data, globvars.USABLE_CRIMES, 'HOMELESS', alpha)
+    TukeyHelper(crime_data, globvars.USABLE_CRIMES, 'HOMELESS', alpha)
     
     print('SCHOOL TUKEY:')
-    FeatureDistanceHelper(crime_data, ['Mischief',
-                                      'Break and Enter Residential/Other',
-                                      'Other Theft',
-                                      'Theft of Vehicle',
-                                      'Theft of Bicycle',
-                                      'Theft from Vehicle'], 
-                          'SCHOOL', alpha)
+    TukeyHelper(crime_data, [ 'Mischief',
+                              'Break and Enter Residential/Other',
+                              'Other Theft',
+                              'Theft of Vehicle',
+                              'Theft of Bicycle',
+                              'Theft from Vehicle' ], 
+                'SCHOOL', alpha)
     
     print('GARDEN TUKEY:')
-    FeatureDistanceHelper(crime_data, ['Mischief',
-                                      'Break and Enter Residential/Other',
-                                      'Other Theft',
-                                      'Theft of Vehicle',
-                                      'Theft from Vehicle'], 
-                          'GARDEN', alpha)
+    TukeyHelper(crime_data, [ 'Mischief',
+                              'Break and Enter Residential/Other',
+                              'Other Theft',
+                              'Theft of Vehicle',
+                              'Theft from Vehicle' ], 
+                'GARDEN', alpha)
 
 
-# Analyze crimes within a radius of each city feature
+#
+# Run a chi-squared test on the number of each type of crime that occurs
+# within the "nearby" raidus of each city feature
+# Assumes "nearby" crimes have already been calculated
+#
 def ChiTests(crime_data, city_data):
-    #
-    # Sum nearby crime types for each city feature type
-    # e.g. Total number of 'thefts of bicyles' near 'school'
+    # Contingency table where rows are crimes and columns are the city features
+    # Each entry indicates how many crimes occuur within the radius of the feature
     observed = []
     for crime_type in globvars.USABLE_CRIMES:
         crime_type_counts = city_data.groupby('TYPE')['nearby_count_' + crime_type].sum()
         observed.append(list(crime_type_counts.values))
-#        print(crime_type_counts)
 
-    np.set_printoptions(threshold=np.nan)
-
-    # Contingency table test
     observed = np.array(observed)
-    _, p, dof, expected = chi2_contingency(observed)
+    _, p, _, expected = chi2_contingency(observed)
     print('p-value of chi-sqaured test: {}'.format(p))
 
     print('Percentage of deviation from expected independent values:')
+    np.set_printoptions(threshold=np.nan)
     print(np.around((observed - expected)/expected*100))
+    # Reset default
+    np.set_printoptions(threshold=1000)
 
 
+#
+# Run a chi-squared test comparing one crime to all other types of crimes
+# against a single city feature
+#
 def ChiTestOneCrimeOneFeature(crime_data, city_data, crimetype, feature):
+    #
+    # A 2x2 contingency table, where the first row is the crime of interest
+    # the scond row is all other crimes, the first column is "occurs near" the
+    # city feature of interest, and the second column is "does not occur neear"
+    #
     observed = []
     idx = crime_data['TYPE'] == crimetype;
     crimes_of_type = crime_data.loc[idx]
@@ -174,26 +222,33 @@ def ChiTestOneCrimeOneFeature(crime_data, city_data, crimetype, feature):
     print(expected)
     print(p)
     
-
+#
 # Convert the count of city features into a binary value of 0 or 1
 #  0 means there is no city feature nearby, 1 means there is at least 1
-# This will allow for easier testing
+#
 def BinarizeCounts(data):
     def f(x): 
         return min(1, x)
     binarize = np.vectorize(f)
     output = binarize(data)
     return output
-
+#
 # Print the probabiity of each type of crime occurring near an area with a given
-#  set of city featuers nearby
-def PredictNearbyCrimes(nearby_city_features, model, nearby_count_columns, crime_precentages=None):
+#   set of city featuers nearby.
+# nearby_city_features: a 2D array where each row is a test to run consisting
+#   of 5 numbers indiciating the number of each city feature
+# model: the classification model to evaluate on
+# nearby_count_columns: The list of crimes used in evaluation
+# crime_percentages: The overall crime rate used in calculating relative scores
+#
+def PredictNearbyCrimes(nearby_city_features, model, nearby_count_columns, 
+                        crime_precentages=None):
     results = model.predict_proba(nearby_city_features)
     classes = model.classes_
     # For each test passed in nearby_city_features, print out the results
     for i in range(len(results)):
+        # Print the list of city features we want to find the crimes for
         city_features = nearby_city_features[i]
-        # Print the city features we want to find the crimes for
         print('Crimes that will occur near ')
         for j in range(len(city_features)):
             print('{} {}'.format(city_features[j], 
@@ -203,55 +258,61 @@ def PredictNearbyCrimes(nearby_city_features, model, nearby_count_columns, crime
             else:
                 print(':')
 
+        # Print the liklihood of each type of crime occuring
         result_df = pd.DataFrame(data={'Crime': classes, 
                                     'Likelihood': results[i]*100})
         result_df['Likelihood'] = result_df['Likelihood'].apply(round, args=[2])
-        
+        # If the overall crime rates were provided, calculate the relative liklihood
         if crime_precentages != None:
             result_df['Relative Likelihood'] = result_df.apply(
-                lambda x: (x['Likelihood'] - crime_precentages[x['Crime']] ) / crime_precentages[x['Crime']] * 100
+                lambda x: (x['Likelihood'] - crime_precentages[x['Crime']] ) /\
+                                crime_precentages[x['Crime']] * 100
             , axis=1)
-        
         print(result_df.sort_values('Likelihood', ascending=False))
 
-
+#
+# Generate Naive Bayes and SVM classifiers to predict the frequency of each type
+# of crime given a list of nearby city features
+#
 def ClassifyCrimeTypes(crime_data, city_data):
-    # Split crime data into feature and class
-    nearby_count_columns = list(map(lambda x: 'nearby_count_' + x, globvars.CITY_FEATURE_TYPES))
+    # Generate a list of column names from each city feature type
+    nearby_count_columns = \
+        list(map(lambda x: 'nearby_count_' + x, globvars.CITY_FEATURE_TYPES))
+    # Remove those we don't care about
     nearby_count_columns.remove('nearby_count_PARK')
     nearby_count_columns.remove('nearby_count_CITYPROJECT')
+    # Split the data into features and class
     X = crime_data[nearby_count_columns]
     y = crime_data['TYPE']
     X_train, X_test, y_train, y_test = train_test_split(X, y)
     
-    #
-    # Train a Naive Bayes classifier to 
-    # guess crime type based on nearby features
-    #
+    # Train a Naive Bayes classifier
     bayes_model = make_pipeline(FunctionTransformer(BinarizeCounts), 
-                                    GaussianNB())
+                                GaussianNB())
     bayes_model.fit(X_train, y_train)
-    
     # Report accuracy
     print('\nBayes Model Score: {}'.format(bayes_model.score(X_test, y_test)))
-    # Train a SVM to classify crime type based on number of nearby features
-    # Cache it to avoid long training times
+    
+    # Train an SVM classifier + cache it to avoid long training times each run
     if os.path.isfile(globvars.SVM_PICKLE):
         svm_model = joblib.load(globvars.SVM_PICKLE)
     else:
         svm_model = make_pipeline(SVC(probability=True))
         print('######################\n' + \
               '# BEGIN TRAINING SVM #\n' + \
-              '######################')
+              '######################\n')
         svm_model.fit(X_train, y_train)
         joblib.dump(svm_model, globvars.SVM_PICKLE)
-    
+        print('Done!')
+    # Report accuracy
     print('\nSVM Model Score: {}'.format(svm_model.score(X_test, y_test)))
     
+    # Get the overall criem rate
     crime_precentages = {}
     crime_counts = crime_data.groupby('TYPE')
     for name, group in crime_counts:
-        crime_precentages[name] = round(group.X.count() / crime_data.X.count() * 100, 2)
+        crime_precentages[name] = \
+            round(group.X.count() / crime_data.X.count() * 100, 2)
     
     # Predict likelihood of crimes based on nearby city features
     city_features_query = [
@@ -262,12 +323,17 @@ def ClassifyCrimeTypes(crime_data, city_data):
         [0,0,0,0,1]
     ]
     print('\nNaive Bayes predictions:')
-    PredictNearbyCrimes(city_features_query, bayes_model, nearby_count_columns, crime_precentages=crime_precentages)
+    PredictNearbyCrimes(city_features_query, bayes_model, nearby_count_columns,
+                        crime_precentages=crime_precentages)
     
     print('\nSVM predictions:')
-    PredictNearbyCrimes(city_features_query, svm_model, nearby_count_columns, crime_precentages=crime_precentages)
+    PredictNearbyCrimes(city_features_query, svm_model, nearby_count_columns, 
+                        crime_precentages=crime_precentages)
+    
+    return bayes_model, svm_model
 
 
+# Perform various calculations on the data to be used in later testing
 def CalculateDistances(crime_data, city_data):
     # Get the k nearest crimes per city feature
     crime_kd = KDTree(crime_data[['X', 'Y']])
@@ -280,8 +346,8 @@ def CalculateDistances(crime_data, city_data):
     dist, ind = city_kd.query(crime_data[['X','Y']].values, k=5)
     crime_data['nearest_city_ind'] = pd.Series(list(ind))
     crime_data['nearest_city_dist'] = pd.Series(list(dist))
-    # Find the average distance to crimes per city feature type
     
+    # Find the average distance to crimes per city feature type
     city_features = city_data.groupby('TYPE')
     for name, group in city_features:
         # Collect the distances to each of the nearest city feature per crime
@@ -330,29 +396,28 @@ def main():
          print('\t{}: {} ({}%)'.format(name, group.X.count(), \
                            round(group.X.count() / crime_data.X.count() * 100,2)))
     
+    # Uncomment if you would like to see Tukey tests
 #    DistanceToCityFeatureTukey(crime_data, city_data)
     
     # For each crime type, find the average distance from each city feature type
-#    for crime_type in globvars.USABLE_CRIMES:
-#        mean_dist = city_data.groupby('TYPE')['avg_dist_' + crime_type].mean()
-#        print("\n\nAverage distances for crime:", crime_type)
-#        print(mean_dist)
+    for crime_type in globvars.USABLE_CRIMES:
+        mean_dist = city_data.groupby('TYPE')['avg_dist_' + crime_type].mean()
+        print("\n\nAverage distances for crime:", crime_type)
+        print(mean_dist)
 
     # Chi1 Contingency test for types of crimes happening nearby a city feature
-#    ChiTests(crime_data, city_data)
+    ChiTests(crime_data, city_data)
    
-
-#    ChiTestOneCrimeOneFeature(crime_data, city_data, 'Other Theft', 'RTS')
     # Try classifying crime types based on nearby city features
     ClassifyCrimeTypes(crime_data, city_data)
 
 
-#    PlotCrimeVsFeatures(crime_data, city_data, 'Break and Enter Residential/Other',
-#                        ['GARDEN', 'HOMELESS', 'RTS', 'SCHOOL'])
-#    PlotCrimeVsFeatures(crime_data, city_data, 'Theft of Vehicle',
-#                        ['RTS', 'SCHOOL'])
-#    PlotCrimeVsFeatures(crime_data, city_data, 'Other Theft',
-#                        ['RTS', 'COMMUNITYCENTER'])
+    PlotCrimeVsFeatures(crime_data, city_data, 'Break and Enter Residential/Other',
+                        ['GARDEN', 'HOMELESS', 'RTS', 'SCHOOL'])
+    PlotCrimeVsFeatures(crime_data, city_data, 'Theft of Vehicle',
+                        ['RTS', 'SCHOOL'])
+    PlotCrimeVsFeatures(crime_data, city_data, 'Other Theft',
+                        ['RTS', 'COMMUNITYCENTER'])
 
 if __name__ == "__main__":
     main()
