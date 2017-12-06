@@ -302,7 +302,10 @@ def ClassifyCrimeTypes(crime_data, city_data):
     bayes_model = make_pipeline(FunctionTransformer(BinarizeCounts), 
                                 GaussianNB())
     bayes_model.fit(X_train, y_train)
+    
     # Report accuracy
+    PrintHeaderRule()
+    print('Classifier models accuracy:')
     print('\nBayes Model Score: {}'.format(bayes_model.score(X_test, y_test)))
     
     # Train an SVM classifier + cache it to avoid long training times each run
@@ -334,6 +337,7 @@ def ClassifyCrimeTypes(crime_data, city_data):
         [0,0,0,1,0],
         [0,0,0,0,1]
     ]
+    
     PrintHeaderRule()
     print('Naive Bayes predictions:')
     PredictNearbyCrimes(city_features_query, bayes_model, nearby_count_columns,
