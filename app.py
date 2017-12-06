@@ -76,10 +76,10 @@ def PlotAllData(crime_data, city_data):
 # crimetype: a single type of crime to be plotted
 # features: a list of city feature types to be plotted
 #
-def PlotCrimeVsFeatures(crime_data, city_data, crimetype='', features=[]):
+def PlotCrimeVsFeatures(crime_data, city_data, crimetype='', features=[], figsize=15):
     crimes = crime_data[crime_data['TYPE'] == crimetype]
     
-    plt.figure(figsize=(15,15))
+    plt.figure(figsize=(figsize,figsize))
     # Since the crimes are much more dense, make them less visible on the graph
     plt.scatter(crimes['X'], crimes['Y'], c='black', 
                 s=3, alpha=0.5, label=crimetype)
@@ -443,10 +443,10 @@ def main():
     
     # Plot all crimes and city features seperately
     for crime_type in globvars.USABLE_CRIMES:
-        PlotCrimeVsFeatures(crime_data, city_data, crimetype=crime_type)
+        PlotCrimeVsFeatures(crime_data, city_data, crimetype=crime_type, figsize=8)
         
     for feature_type in globvars.CITY_FEATURE_TYPES:
-        PlotCrimeVsFeatures(crime_data, city_data, features=[feature_type])
+        PlotCrimeVsFeatures(crime_data, city_data, features=[feature_type], figsize=8)
     
 
 if __name__ == "__main__":
