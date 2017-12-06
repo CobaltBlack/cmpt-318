@@ -50,6 +50,10 @@ city_color_map = {
     'SCHOOL': 'orange'
 }
 
+
+def PrintHeaderRule():
+    print('\n\n#############################')
+
 #
 # Plots two 2D scatter plots of the location of the crimes and city features
 # No legend is given as the data is very dense when all put into a single graph
@@ -119,9 +123,13 @@ def TukeyHelper(crime_data, crimes, feature, alpha = 0.05):
     posthoc = pairwise_tukeyhsd(df['nearest_'+feature], df['TYPE'], alpha=alpha)
     print(posthoc)
 
-
-# Determine if the mean distance to each city feature from each type of crime varies
+#
+# Determine if the mean distance to each city feature
+# from each type of crime varies
+#
 def DistanceToCityFeatureTukey(crime_data, city_data):
+    PrintHeaderRule()
+    print('Tukey tests on mean distance to each city feature\n')
     #
     # We are doing a test for each city feature type, adjust for this in 
     # the statistical analysis
@@ -177,6 +185,8 @@ def DistanceToCityFeatureTukey(crime_data, city_data):
 # Assumes "nearby" crimes have already been calculated
 #
 def ChiTests(crime_data, city_data):
+    PrintHeaderRule()
+    print('Chi-squared test on all data\n')
     # Contingency table where rows are crimes and columns are the city features
     # Each entry indicates how many crimes occuur within the radius of the feature
     observed = []
@@ -200,6 +210,8 @@ def ChiTests(crime_data, city_data):
 # against a single city feature
 #
 def ChiTestOneCrimeOneFeature(crime_data, city_data, crimetype, feature):
+    PrintHeaderRule()
+    print('Chi-squared test on', crimetype, 'and', feature, '\n')
     #
     # A 2x2 contingency table, where the first row is the crime of interest
     # the scond row is all other crimes, the first column is "occurs near" the
@@ -249,7 +261,7 @@ def PredictNearbyCrimes(nearby_city_features, model, nearby_count_columns,
     for i in range(len(results)):
         # Print the list of city features we want to find the crimes for
         city_features = nearby_city_features[i]
-        print('Crimes that will occur near ')
+        print('\n')
         for j in range(len(city_features)):
             print('{} {}'.format(city_features[j], 
                   nearby_count_columns[j].replace('nearby_count_', "")), end='')
@@ -322,11 +334,13 @@ def ClassifyCrimeTypes(crime_data, city_data):
         [0,0,0,1,0],
         [0,0,0,0,1]
     ]
-    print('\nNaive Bayes predictions:')
+    PrintHeaderRule()
+    print('Naive Bayes predictions:')
     PredictNearbyCrimes(city_features_query, bayes_model, nearby_count_columns,
                         crime_precentages=crime_precentages)
     
-    print('\nSVM predictions:')
+    PrintHeaderRule()
+    print('SVM predictions:')
     PredictNearbyCrimes(city_features_query, svm_model, nearby_count_columns, 
                         crime_precentages=crime_precentages)
     
@@ -391,7 +405,8 @@ def main():
     CalculateDistances(crime_data, city_data)
     
     crime_counts = crime_data.groupby('TYPE')
-    print('Number of crimes:')
+    PrintHeaderRule()
+    print('Number of crimes\n')
     for name, group in crime_counts:
          print('\t{}: {} ({}%)'.format(name, group.X.count(), \
                            round(group.X.count() / crime_data.X.count() * 100,2)))
@@ -400,6 +415,8 @@ def main():
 #    DistanceToCityFeatureTukey(crime_data, city_data)
     
     # For each crime type, find the average distance from each city feature type
+    PrintHeaderRule()
+    print('Average distance to each city feature per crime')
     for crime_type in globvars.USABLE_CRIMES:
         mean_dist = city_data.groupby('TYPE')['avg_dist_' + crime_type].mean()
         print("\n\nAverage distances for crime:", crime_type)
