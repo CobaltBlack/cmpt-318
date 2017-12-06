@@ -76,7 +76,7 @@ def PlotAllData(crime_data, city_data):
 # crimetype: a single type of crime to be plotted
 # features: a list of city feature types to be plotted
 #
-def PlotCrimeVsFeatures(crime_data, city_data, crimetype, features):
+def PlotCrimeVsFeatures(crime_data, city_data, crimetype='', features=[]):
     crimes = crime_data[crime_data['TYPE'] == crimetype]
     
     plt.figure(figsize=(15,15))
@@ -93,9 +93,10 @@ def PlotCrimeVsFeatures(crime_data, city_data, crimetype, features):
                 s=30, label=feature)
     plt.legend(loc=2)
     # Create a relevant filename so multiple images can be produced
-    filename = (crimetype + '_' + '_'.join(features) + '.png')
+    filename = (crimetype + '_' + '_'.join(features))
     filename = re.sub('[/ ]','-', filename)
-    plt.savefig(filename)
+    filename = filename.strip('_')
+    plt.savefig(filename + '.png')
     
 #
 # Performs a Tukey Pairwise test on the distances of each type
@@ -432,13 +433,21 @@ def main():
     # Try classifying crime types based on nearby city features
     ClassifyCrimeTypes(crime_data, city_data)
 
-
+    # Plot crime/city feature pairings of interest
     PlotCrimeVsFeatures(crime_data, city_data, 'Break and Enter Residential/Other',
                         ['GARDEN', 'HOMELESS', 'RTS', 'SCHOOL'])
     PlotCrimeVsFeatures(crime_data, city_data, 'Theft of Vehicle',
                         ['RTS', 'SCHOOL'])
     PlotCrimeVsFeatures(crime_data, city_data, 'Other Theft',
                         ['RTS', 'COMMUNITYCENTER'])
+    
+    # Plot all crimes and city features seperately
+    for crime_type in globvars.USABLE_CRIMES:
+        PlotCrimeVsFeatures(crime_data, city_data, crimetype=crime_type)
+        
+    for feature_type in globvars.CITY_FEATURE_TYPES:
+        PlotCrimeVsFeatures(crime_data, city_data, features=[feature_type])
+    
 
 if __name__ == "__main__":
     main()
